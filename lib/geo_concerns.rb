@@ -1,4 +1,4 @@
-require 'curation_concerns'
+require 'hyrax'
 require "geo_concerns/engine"
 require 'leaflet-rails'
 

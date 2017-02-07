@@ -6,8 +6,8 @@ class TestAppGenerator < Rails::Generators::Base
   # if you need to generate any additional configuration
   # into the test app, this generator will be run immediately
   # after setting up the application
-  def install_curation_concerns
-    generate 'curation_concerns:install', '-f'
+  def install_hyrax
+    generate 'hyrax:install', '-f'
   end
 
   def install_engine
@@ -16,5 +16,9 @@ class TestAppGenerator < Rails::Generators::Base
 
   def run_migrations
     rake 'db:migrate'
+  end
+
+  def load_workflow
+    rails_command 'hyrax:workflow:load'
   end
 end

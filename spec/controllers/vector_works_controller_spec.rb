@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CurationConcerns::VectorWorksController, type: :controller do
+describe Hyrax::VectorWorksController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:vector_work) { FactoryGirl.create(:vector_work, user: user, title: ['Vector Work Title']) }
   let(:reloaded) { vector_work.reload }
@@ -31,12 +31,6 @@ describe CurationConcerns::VectorWorksController, type: :controller do
   describe "#show_presenter" do
     it "is a vector work show presenter" do
       expect(described_class.new.show_presenter.name).to eq("GeoConcerns::VectorWorkShowPresenter")
-    end
-  end
-
-  describe '#form_class' do
-    it 'returns the raster work form class' do
-      expect(described_class.new.form_class). to eq(CurationConcerns::VectorWorkForm)
     end
   end
 

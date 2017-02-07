@@ -1,3 +1,3 @@
-class FileSetPresenter < CurationConcerns::FileSetPresenter
+class FileSetPresenter < Hyrax::FileSetPresenter
   include ::GeoConcerns::FileSetPresenterBehavior
 end

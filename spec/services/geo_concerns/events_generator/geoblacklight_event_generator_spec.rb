@@ -21,11 +21,11 @@ RSpec.describe GeoConcerns::EventsGenerator::GeoblacklightEventGenerator do
   end
   let(:discovery_doc) { { "geoblacklight_version" => "1.0",
                           "dc_identifier_s" => "geo-work-1",
-                          "layer_slug_s" => "your-institution-geo-work-1",
-                          "uuid" => "your-institution-geo-work-1",
+                          "layer_slug_s" => "institution-name-geo-work-1",
+                          "uuid" => "institution-name-geo-work-1",
                           "dc_title_s" => record.title.first,
                           "solr_geom" => "ENVELOPE(-71.0, -69.0, 43.0, 42.0)",
-                          "dct_provenance_s" => "Your Institution",
+                          "dct_provenance_s" => "Institution Name",
                           "dc_rights_s" => "Public",
                           "dc_description_s" => "geo work",
                           "dct_temporal_sm" => ["2011"],
@@ -59,7 +59,7 @@ RSpec.describe GeoConcerns::EventsGenerator::GeoblacklightEventGenerator do
       geo_concern.save
       geo_concern.destroy
       expected_result = {
-        "id" => "your-institution-geo-work-1",
+        "id" => "institution-name-geo-work-1",
         "event" => "DELETED",
         "exchange" => "geoblacklight"
       }

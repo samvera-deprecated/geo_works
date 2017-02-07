@@ -1,7 +1,7 @@
 module GeoConcerns
   module SolrDocumentBehavior
     extend ActiveSupport::Concern
-    include CurationConcerns::SolrDocumentBehavior
+    include Hyrax::SolrDocumentBehavior
 
     # @return [Array<String>]
     def spatial
@@ -25,7 +25,7 @@ module GeoConcerns
 
     # @return [String]
     def provenance
-      name = I18n.t('curation_concerns.institution.name')
+      name = I18n.t('hyrax.institution_name')
       raise ArgumentError, "Provenance required in configuration" unless name.present?
       name
     end

@@ -1,4 +1,4 @@
 class FileSet < ActiveFedora::Base
-  include ::CurationConcerns::FileSetBehavior
+  include ::Hyrax::FileSetBehavior
   include ::GeoConcerns::GeoFileSetBehavior
 end

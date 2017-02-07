@@ -12,13 +12,13 @@ module GeoConcerns
     end
 
     def install_ability
-      inject_into_file 'app/models/ability.rb', after: "include CurationConcerns::Ability\n" do
+      inject_into_file 'app/models/ability.rb', after: "include Hyrax::Ability\n" do
         "  include GeoConcerns::Ability\n"
       end
     end
 
     def register_work
-      inject_into_file 'config/initializers/curation_concerns.rb', after: "CurationConcerns.configure do |config|\n" do
+      inject_into_file 'config/initializers/hyrax.rb', after: "Hyrax.config do |config|\n" do
         "  # Injected via `rails g geo_concerns:install`\n" \
           "  config.register_curation_concern :vector_work\n" \
           "  config.register_curation_concern :raster_work\n" \
@@ -45,12 +45,12 @@ module GeoConcerns
     end
 
     def install_file_sets_controller
-      file_path = 'app/controllers/curation_concerns/file_sets_controller.rb'
-      copy_file 'controllers/curation_concerns/file_sets_controller.rb', file_path
+      file_path = 'app/controllers/hyrax/file_sets_controller.rb'
+      copy_file 'controllers/hyrax/file_sets_controller.rb', file_path
     end
 
-    def copy_curation_concerns_derivate_path_monkey_patch
-      file_path = 'config/initializers/curation_concerns_derivative_path_monkey_patch.rb'
+    def copy_hyrax_derivate_path_monkey_patch
+      file_path = 'config/initializers/hyrax_derivative_path_monkey_patch.rb'
       copy_file file_path, file_path
     end
 
@@ -64,7 +64,7 @@ module GeoConcerns
     def inject_into_file_set
       file_path = 'app/models/file_set.rb'
       if File.exist?(file_path)
-        inject_into_file file_path, after: /include ::CurationConcerns::FileSetBehavior.*$/ do
+        inject_into_file file_path, after: /include ::Hyrax::FileSetBehavior.*$/ do
           "\n  # GeoConcerns behavior to FileSet.\n" \
             "  include ::GeoConcerns::GeoFileSetBehavior\n"
         end
@@ -102,7 +102,7 @@ module GeoConcerns
       file_path = 'app/assets/javascripts/application.js'
       inject_into_file file_path, before: %r{\/\/= require_tree \..*$} do
         "//= require geo_concerns/application\n" \
-        "//= require curation_concerns\n" \
+        "//= require hyrax\n" \
         "// Require es6 modules after almond is loaded in curation concerns.\n" \
         "//= require geo_concerns/es6-modules\n"
       end
@@ -112,6 +112,13 @@ module GeoConcerns
       file_path = 'app/assets/stylesheets/application.css'
       inject_into_file file_path, before: /\*= require_tree \..*$/ do
         "*= require geo_concerns/application\n "
+    end
+
+    def inject_derivative_service_into_hyrax_initializer
+      file_path = 'config/initializers/hyrax.rb'
+      append_to_file file_path do
+        "# Add derivative service for GeoConcerns\n" \
+          "Hyrax::DerivativeService.services = [GeoConcerns::FileSetDerivativesService] + Hyrax::DerivativeService.services\n"
       end
     end
 
@@ -120,11 +127,11 @@ module GeoConcerns
       def install_work
         name = @class_name.underscore
         model_path = "app/models/#{name}.rb"
-        actor_path = "app/actors/curation_concerns/actors/#{name}_actor.rb"
-        controller_path = "app/controllers/curation_concerns/#{name.pluralize}_controller.rb"
+        actor_path = "app/actors/hyrax/actors/#{name}_actor.rb"
+        controller_path = "app/controllers/hyrax/#{name.pluralize}_controller.rb"
         copy_file "models/#{name}.rb", model_path
-        copy_file "actors/curation_concerns/actors/#{name}_actor.rb", actor_path
-        copy_file "controllers/curation_concerns/#{name.pluralize}_controller.rb", controller_path
+        copy_file "actors/hyrax/actors/#{name}_actor.rb", actor_path
+        copy_file "controllers/hyrax/#{name.pluralize}_controller.rb", controller_path
       end
 
       def install_specs

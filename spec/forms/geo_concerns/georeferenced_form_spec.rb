@@ -6,9 +6,13 @@ describe GeoConcerns::GeoreferencedForm do
       property :cartographic_projection,
                predicate: ::RDF::URI.new('http://bibframe.org/vocab/cartographicProjection'),
                multiple: false
+
+      def member_of_collection_ids
+        nil
+      end
     end
 
-    class TestForm < CurationConcerns::Forms::WorkForm
+    class TestForm < Hyrax::Forms::WorkForm
       include GeoConcerns::GeoreferencedForm
       self.model_class = TestModel
     end
@@ -20,7 +24,7 @@ describe GeoConcerns::GeoreferencedForm do
   end
 
   let(:object) { TestModel.new(cartographic_projection: 'urn:ogc:def:crs:EPSG:6.3:26986') }
-  let(:form) { TestForm.new(object, nil) }
+  let(:form) { TestForm.new(object, nil, nil) }
 
   describe '.terms' do
     subject { form.terms }

@@ -3,7 +3,7 @@ module GeoConcerns
     extend ActiveSupport::Concern
     included do
       self.show_presenter = ::FileSetPresenter
-      self.form_class = CurationConcerns::Forms::FileSetEditForm
+      self.form_class = Hyrax::Forms::FileSetEditForm
     end
 
     # Render geo file sets form if parent is a geo work

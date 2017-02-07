@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.2.2' # same as Rails 5
 
-  spec.add_dependency 'curation_concerns', '>= 1.6'
+  spec.add_dependency 'hyrax'
   spec.add_dependency 'leaflet-rails', '~> 0.7'
   spec.add_dependency 'json-schema', '>= 2.6.2'
   spec.add_dependency 'rgeoserver', '>= 0.10.0'
@@ -42,4 +42,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-rspec', '~> 1.4.1'
   spec.add_development_dependency 'factory_girl'
   spec.add_development_dependency 'capybara', '~> 2.7'
+  spec.add_development_dependency "poltergeist", "~> 1.5"
 end

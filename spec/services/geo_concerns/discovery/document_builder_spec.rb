@@ -12,10 +12,10 @@ describe GeoConcerns::Discovery::DocumentBuilder do
   let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
   let(:metadata__mime_type) { 'application/xml; schema=iso19139' }
   let(:metadata_file) { FileSet.new(id: 'metadatafile', geo_mime_type: metadata__mime_type) }
-  let(:metadata_presenter) { CurationConcerns::FileSetPresenter.new(SolrDocument.new(metadata_file.to_solr), nil) }
+  let(:metadata_presenter) { Hyrax::FileSetPresenter.new(SolrDocument.new(metadata_file.to_solr), nil) }
   let(:geo_file_mime_type) { 'application/zip; ogr-format="ESRI Shapefile"' }
   let(:geo_file) { FileSet.new(id: 'geofile', geo_mime_type: geo_file_mime_type) }
-  let(:geo_file_presenter) { CurationConcerns::FileSetPresenter.new(SolrDocument.new(geo_file.to_solr), nil) }
+  let(:geo_file_presenter) { Hyrax::FileSetPresenter.new(SolrDocument.new(geo_file.to_solr), nil) }
   let(:coverage) { GeoConcerns::Coverage.new(43.039, -69.856, 42.943, -71.032) }
   let(:issued) { '01/02/2013' }
   let(:issued_xmlschema) { '2013-02-01T00:00:00Z' }
@@ -45,10 +45,10 @@ describe GeoConcerns::Discovery::DocumentBuilder do
     context 'required' do
       it 'has all metadata' do
         expect(document['dc_identifier_s']).to eq('ark:/99999/fk4')
-        expect(document['layer_slug_s']).to eq('your-institution-geo-work-1')
+        expect(document['layer_slug_s']).to eq('institution-name-geo-work-1')
         expect(document['dc_title_s']).to eq('Geo Work')
         expect(document['solr_geom']).to eq('ENVELOPE(-71.032, -69.856, 43.039, 42.943)')
-        expect(document['dct_provenance_s']).to eq('Your Institution')
+        expect(document['dct_provenance_s']).to eq('Institution Name')
         expect(document['dc_rights_s']).to eq('Public')
         expect(document['geoblacklight_version']).to eq('1.0')
       end

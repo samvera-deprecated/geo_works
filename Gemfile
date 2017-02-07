@@ -46,3 +46,5 @@ else
   end
 end
 # END ENGINE_CART BLOCK
+
+gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'master'

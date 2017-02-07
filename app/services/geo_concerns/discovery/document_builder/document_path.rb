@@ -10,14 +10,14 @@ module GeoConcerns
         # Returns url for geo concern show page.
         # @return [String] geo concern show page url
         def to_s
-          helper.polymorphic_url(geo_concern, host: host, protocol: protocol)
+          document_helper.polymorphic_url(geo_concern, host: host, protocol: protocol)
         end
 
         # Returns url for downloading the original file.
         # @return [String] original file download url
         def file_download
           return unless file_set
-          helper.download_url(file_set, host: host, protocol: protocol)
+          hyrax_url_helpers.download_url(file_set, host: host, protocol: protocol)
         end
 
         # Returns url for downloading the metadata file.
@@ -25,7 +25,7 @@ module GeoConcerns
         # @return [String] metadata download url
         def metadata_download(format)
           return unless metadata_file_set
-          path = helper.download_url(metadata_file_set, host: host, protocol: protocol)
+          path = hyrax_url_helpers.download_url(metadata_file_set, host: host, protocol: protocol)
           mime_type = metadata_file_set.solr_document[:geo_mime_type_ssim].first
           path if MetadataFormatService.label(mime_type) == format
         end
@@ -54,10 +54,14 @@ module GeoConcerns
           end
 
           # Instantiates a DocumentHelper object.
-          # Used for access to url_helpers and poymorphic routes.
+          # Used for access to rails url_helpers and poymorphic routes.
           # @return [DocumentHelper] document helper
-          def helper
+          def document_helper
             @helper ||= DocumentHelper.new
+          end
+
+          def hyrax_url_helpers
+            Hyrax::Engine.routes.url_helpers
           end
 
           # Indicates if the ssl is enabled.

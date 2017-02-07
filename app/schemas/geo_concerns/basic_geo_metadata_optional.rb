@@ -3,7 +3,7 @@ module GeoConcerns
     #
     # The following properties are inherited from Curation Concerns' metadata
     #
-    # @see https://github.com/projecthydra/curation_concerns/blob/v1.6.0/app/models/concerns/curation_concerns/basic_metadata.rb
+    # @see https://github.com/projecthydra/hyrax/blob/v1.6.0/app/models/concerns/hyrax/basic_metadata.rb
     # Optional:
     #   :contributor
     #   :creator

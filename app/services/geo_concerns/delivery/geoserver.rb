@@ -72,7 +72,7 @@ module GeoConcerns
         end
 
         def base_path(path)
-          path.gsub(CurationConcerns.config.derivatives_path, '')
+          path.gsub(Hyrax.config.derivatives_path.to_s, '')
         end
 
         def shapefile_dir

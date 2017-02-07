@@ -4,10 +4,11 @@ shared_examples 'a set of raster derivatives' do
   let(:messenger) { instance_double(GeoConcerns::EventsGenerator) }
   before do
     allow(GeoConcerns::Messaging).to receive(:messenger).and_return(messenger)
-    expect(messenger).to receive(:derivatives_created).with(file_set)
+    allow(messenger).to receive(:derivatives_created)
   end
   it 'makes a thumbnail' do
     new_thumb = "#{Rails.root}/tmp/derivatives/#{file_set.id}/thumbnail.thumbnail"
+    expect(messenger).to receive(:derivatives_created).with(file_set)
     expect {
       file_set.create_derivatives(file_name)
     }.to change { Dir[new_thumb].empty? }
@@ -27,10 +28,11 @@ shared_examples 'a set of vector derivatives' do
   let(:messenger) { instance_double(GeoConcerns::EventsGenerator) }
   before do
     allow(GeoConcerns::Messaging).to receive(:messenger).and_return(messenger)
-    expect(messenger).to receive(:derivatives_created).with(file_set)
+    allow(messenger).to receive(:derivatives_created)
   end
   it 'makes a thumbnail' do
     new_thumb = "#{Rails.root}/tmp/derivatives/#{file_set.id}/thumbnail.thumbnail"
+    expect(messenger).to receive(:derivatives_created).with(file_set)
     expect {
       file_set.create_derivatives(file_name)
     }.to change { Dir[new_thumb].empty? }
@@ -46,19 +48,19 @@ shared_examples 'a set of vector derivatives' do
   end
 end
 
-describe CurationConcerns::FileSet do
+describe Hyrax::FileSet do
   let(:file_set) { FileSet.create { |gf| gf.apply_depositor_metadata('geonerd@example.com') } }
 
   before do
     allow(file_set).to receive(:geo_mime_type).and_return(geo_mime_type)
 
-    allow(CurationConcerns::DerivativePath).to receive(:derivative_path_for_reference) do |object, key|
+    allow(Hyrax::DerivativePath).to receive(:derivative_path_for_reference) do |object, key|
       "#{Rails.root}/tmp/derivatives/#{object.id}/#{key}.#{key}"
     end
   end
 
   after do
-    dir = File.join(CurationConcerns.config.derivatives_path, file_set.id)
+    dir = File.join(Hyrax.config.derivatives_path, file_set.id)
     FileUtils.rm_r(dir) if File.directory?(dir)
   end
 

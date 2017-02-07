@@ -1,5 +1,5 @@
 module GeoConcerns
-  class CoverageRenderer < CurationConcerns::Renderers::AttributeRenderer
+  class CoverageRenderer < Hyrax::Renderers::AttributeRenderer
     include BoundingBoxHelper
 
     def render

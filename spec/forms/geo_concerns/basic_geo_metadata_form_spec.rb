@@ -4,9 +4,13 @@ describe GeoConcerns::BasicGeoMetadataForm do
   before do
     class TestModel < ActiveFedora::Base
       property :coverage, predicate: ::RDF::Vocab::DC11.coverage, multiple: false
+
+      def member_of_collection_ids
+        nil
+      end
     end
 
-    class TestForm < CurationConcerns::Forms::WorkForm
+    class TestForm < Hyrax::Forms::WorkForm
       include GeoConcerns::BasicGeoMetadataForm
       self.model_class = TestModel
     end
@@ -18,7 +22,7 @@ describe GeoConcerns::BasicGeoMetadataForm do
   end
 
   let(:object) { TestModel.new(coverage: GeoConcerns::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s) }
-  let(:form) { TestForm.new(object, nil) }
+  let(:form) { TestForm.new(object, nil, nil) }
 
   describe '.terms' do
     subject { form.terms }

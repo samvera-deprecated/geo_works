@@ -1,4 +1,4 @@
-# Geo Concerns
+# Geo Concerns w/ Hyrax
 [![Build Status](https://img.shields.io/travis/projecthydra-labs/geo_concerns/master.svg)](https://travis-ci.org/projecthydra-labs/geo_concerns)
 [![Coverage Status](https://img.shields.io/coveralls/projecthydra-labs/geo_concerns/master.svg)](https://coveralls.io/github/projecthydra-labs/geo_concerns?branch=master)
 [![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/projecthydra-labs/geo_concerns)
@@ -60,11 +60,11 @@ $ cd app-name
 $ rake hydra:server
 ```
 
-Add GeoConcerns models to an existing CurationConcerns application:
+Add GeoConcerns models to an existing Hyrax application:
 
 1. Add `gem 'geo_concerns'` to your Gemfile.
 1. `bundle install`
-1. `rails generate curation_concerns:install`
+1. `rails generate hyrax:install`
 1. `rails generate geo_concerns:install -f`
 
 ## Development

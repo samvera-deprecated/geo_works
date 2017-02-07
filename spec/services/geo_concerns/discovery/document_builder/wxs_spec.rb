@@ -7,7 +7,7 @@ describe GeoConcerns::Discovery::DocumentBuilder::Wxs do
   let(:geo_concern_presenter) { GeoConcerns::VectorWorkShowPresenter.new(SolrDocument.new(geo_concern.to_solr), nil) }
   let(:geo_file_mime_type) { 'application/zip; ogr-format="ESRI Shapefile"' }
   let(:geo_file) { FileSet.new(id: 'geofile', geo_mime_type: geo_file_mime_type) }
-  let(:geo_file_presenter) { CurationConcerns::FileSetPresenter.new(SolrDocument.new(geo_file.to_solr), nil) }
+  let(:geo_file_presenter) { Hyrax::FileSetPresenter.new(SolrDocument.new(geo_file.to_solr), nil) }
   let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
 
   before do

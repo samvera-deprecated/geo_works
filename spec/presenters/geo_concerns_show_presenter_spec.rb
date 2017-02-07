@@ -29,7 +29,7 @@ RSpec.describe ::GeoConcerns::GeoConcernsShowPresenter do
     subject { described_class.new(solr_document, ability) }
 
     before do
-      allow(CurationConcerns::Renderers::AttributeRenderer).to receive(:new).and_return(attribute_renderer)
+      allow(Hyrax::Renderers::AttributeRenderer).to receive(:new).and_return(attribute_renderer)
       allow(GeoConcerns::CoverageRenderer).to receive(:new).and_return(coverage_renderer)
     end
 

@@ -49,7 +49,7 @@ Metrics/MethodLength:
   Exclude:
     - 'Rakefile'
     - 'app/models/concerns/geo_concerns/extractors/iso19139_helper.rb'
-    - 'app/models/concerns/geo_concerns/file_set/derivatives.rb'
+    - 'app/services/geo_concerns/file_set_derivatives_service.rb'
 
 Metrics/ClassLength:
   Exclude:

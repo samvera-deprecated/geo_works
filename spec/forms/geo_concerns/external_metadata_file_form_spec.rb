@@ -3,9 +3,12 @@ require 'spec_helper'
 describe GeoConcerns::ExternalMetadataFileForm do
   before do
     class TestModel < ActiveFedora::Base
+      def member_of_collection_ids
+        nil
+      end
     end
 
-    class TestForm < CurationConcerns::Forms::WorkForm
+    class TestForm < Hyrax::Forms::WorkForm
       include GeoConcerns::ExternalMetadataFileForm
       self.model_class = TestModel
     end
@@ -17,7 +20,7 @@ describe GeoConcerns::ExternalMetadataFileForm do
   end
 
   let(:object) { TestModel.new }
-  let(:form) { TestForm.new(object, nil) }
+  let(:form) { TestForm.new(object, nil, nil) }
 
   describe '.triggers' do
     it 'has should_populate_metadata trigger attribute' do

@@ -7,6 +7,5 @@ module GeoConcerns
     include ::GeoConcerns::VectorFileBehavior
     include ::GeoConcerns::ExternalMetadataFileBehavior
     include ::GeoConcerns::FileSetMetadata
-    include ::GeoConcerns::FileSet::Derivatives
   end
 end

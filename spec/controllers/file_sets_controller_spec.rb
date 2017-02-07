@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CurationConcerns::FileSetsController, type: :controller do
+describe Hyrax::FileSetsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:parent) { FactoryGirl.build(:public_vector_work) }
 

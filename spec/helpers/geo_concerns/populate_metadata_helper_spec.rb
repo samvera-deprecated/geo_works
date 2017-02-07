@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GeoConcerns::GeoWorksHelper do
   let(:helper) { TestingHelper.new }
   let(:show_presenter) { instance_double('ShowPresenter', class: GeoConcerns::GeoConcernsShowPresenter) }
-  let(:file_presenter) { instance_double('FilePresenter', class: CurationConcerns::FileSetPresenter) }
+  let(:file_presenter) { instance_double('FilePresenter', class: Hyrax::FileSetPresenter) }
   let(:file_presenters) { [file_presenter] }
   before do
     class TestingHelper
