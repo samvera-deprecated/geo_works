@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CurationConcerns::FileSetsController, type: :controller do
+describe Hyrax::FileSetsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:parent) { FactoryGirl.build(:public_vector_work) }
 
@@ -9,7 +9,7 @@ describe CurationConcerns::FileSetsController, type: :controller do
   describe '#new' do
     it 'renders a geo file set form if the parent is a geo work' do
       allow(subject).to receive(:geo?).and_return(true)
-      expect(subject).to receive(:render).with('geo_concerns/file_sets/new')
+      expect(subject).to receive(:render).with('geo_works/file_sets/new')
       subject.new
     end
     it 'only render a geo file set form if the parent is a geo work' do
@@ -20,11 +20,11 @@ describe CurationConcerns::FileSetsController, type: :controller do
   end
 
   describe 'messaging' do
-    let(:messenger) { instance_double(GeoConcerns::EventsGenerator) }
+    let(:messenger) { instance_double(GeoWorks::EventsGenerator) }
 
     before do
       sign_in user
-      allow(GeoConcerns::Messaging).to receive(:messenger).and_return(messenger)
+      allow(GeoWorks::Messaging).to receive(:messenger).and_return(messenger)
     end
 
     context 'after updating metadata' do

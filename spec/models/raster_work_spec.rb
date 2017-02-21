@@ -8,7 +8,7 @@ describe RasterWork do
   let(:ext_metadata_file2) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
   let(:vector1) { VectorWork.new }
   let(:vector2) { VectorWork.new }
-  let(:coverage) { GeoConcerns::Coverage.new(43.039, -69.856, 42.943, -71.032) }
+  let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032) }
 
   it 'updates the title' do
     subject.attributes = { title: ['A raster work'] }

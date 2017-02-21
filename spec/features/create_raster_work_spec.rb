@@ -2,7 +2,6 @@ require 'spec_helper'
 
 RSpec.feature 'RasterWorkController', type: :feature do
   let(:user) { FactoryGirl.create(:admin) }
-  let(:fgdc_file) { test_data_fixture_path('zipcodes_fgdc.xml') }
 
   context "an authorized user" do
     before do
@@ -11,45 +10,22 @@ RSpec.feature 'RasterWorkController', type: :feature do
     end
 
     scenario "creating a raster work and attaching a vector work" do
-      visit new_curation_concerns_raster_work_path
-      expect(page).not_to have_text 'Add Your Content'
+      visit new_hyrax_raster_work_path
+      expect(page).not_to have_selector(:css, 'a[href="#files"]')
+      expect(page).to have_text 'Add Location'
       fill_in 'raster_work_title', with: 'Raster Title'
-      fill_in 'raster_work_temporal', with: '1989'
+      fill_in 'raster_work_creator', with: 'User'
+      fill_in 'raster_work_keyword', with: 'Raster'
+      fill_in 'raster_work_spatial', with: 'France'
+      fill_in 'raster_work_temporal', with: '1998-2006'
+      fill_in 'raster_work_issued', with: '2001-01-01T00:00:00Z'
       choose 'raster_work_visibility_open'
       select 'Attribution 3.0 United States', from: 'raster_work[rights][]'
-      click_button 'Create Raster work'
+      choose 'raster_work_visibility_open'
+      check 'agreement'
+      click_button 'Save'
 
       expect(page).to have_text 'Raster Title'
-      expect(page).to have_text '1989'
-      expect(page).to have_text 'Open Access'
-      expect(page).to have_link 'Attribution 3.0 United States', href: 'http://creativecommons.org/licenses/by/3.0/us/'
-
-      expect(page).to have_css("input#work_child_members_ids")
-      expect(page).to have_css("input#work_parent_members_ids")
-      expect(page).to have_text 'Attach'
-
-      click_link 'Attach New Vector Work'
-      expect(page).not_to have_text 'Add Your Content'
-      fill_in 'vector_work_title', with: 'Vector Title'
-      fill_in 'vector_work_temporal', with: '1990'
-      choose 'vector_work_visibility_authenticated'
-      select 'Attribution 3.0 United States', from: 'vector_work[rights][]'
-      click_button 'Create Vector work'
-
-      expect(page).to have_text 'Vector Title'
-      expect(page).to have_text '1990'
-      expect(page).to have_text 'Institution Name'
-      expect(page).to have_link 'Attribution 3.0 United States', href: 'http://creativecommons.org/licenses/by/3.0/us/'
-
-      click_button 'Attach a File'
-      click_link 'Metadata'
-      fill_in 'file_set[title][]', with: 'File Title'
-      select 'FGDC', from: 'file_set_geo_mime_type'
-      attach_file 'file_set[files][]', fgdc_file
-      click_button 'Attach to Vector Work'
-
-      expect(page).to have_text 'zipcodes_fgdc.xml'
-      expect(page).to have_selector(:link_or_button, 'Download')
     end
   end
 end

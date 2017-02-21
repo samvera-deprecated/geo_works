@@ -10,7 +10,7 @@ if ENV['COVERAGE'] || ENV['CI']
     add_filter '/spec'
     add_filter '/.internal_test_app'
     add_filter '/lib/generators'
-    add_filter '/lib/geo_concerns/version.rb'
+    add_filter '/lib/geo_works/version.rb'
   end
 end
 
@@ -21,6 +21,27 @@ ENV['RAILS_ENV'] ||= 'test'
 EngineCart.load_application!
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 require 'rspec/rails'
+
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :poltergeist
+Capybara.default_max_wait_time = ENV['TRAVIS'] ? 30 : 15
+# Adding the below to deal with random Capybara-related timeouts in CI.
+# Found in this thread: https://github.com/teampoltergeist/poltergeist/issues/375
+poltergeist_options = {
+  js_errors: true,
+  timeout: 30,
+  logger: nil,
+  phantomjs_logger: StringIO.new,
+  phantomjs_options: [
+    '--load-images=no',
+    '--ignore-ssl-errors=yes'
+  ]
+}
+Capybara.register_driver(:poltergeist) do |app|
+  Capybara::Poltergeist::Driver.new(app, poltergeist_options)
+end
+
+ActiveJob::Base.queue_adapter = :inline
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

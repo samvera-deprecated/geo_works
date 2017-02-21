@@ -6,7 +6,7 @@ describe VectorWork do
   let(:vector_file2) { FileSet.new(geo_mime_type: 'application/zip; ogr-format="ESRI Shapefile"') }
   let(:ext_metadata_file1) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
   let(:ext_metadata_file2) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
-  let(:coverage) { GeoConcerns::Coverage.new(43.039, -69.856, 42.943, -71.032) }
+  let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032) }
 
   describe 'with acceptable inputs' do
     subject { described_class.new }

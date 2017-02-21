@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe GeoConcerns::GeoWorksHelper do
+describe GeoWorks::GeoWorksHelper do
   let(:helper) { TestingHelper.new }
-  let(:presenter) { instance_double('Presenter', class: GeoConcerns::ImageWorkShowPresenter) }
+  let(:presenter) { instance_double('Presenter', class: GeoWorks::ImageWorkShowPresenter) }
   before do
     class TestingHelper
-      include GeoConcerns::GeoWorksHelper
+      include GeoWorks::GeoWorksHelper
     end
   end
   after do
