@@ -9,14 +9,14 @@
   </div>
   <div class="col-sm-8">
     <%= render 'work_description', presenter: @presenter %>
-    <%= render 'geo_concerns/metadata', presenter: @presenter %>
-    <%= render 'geo_concerns/relationships', presenter: @presenter %>
+    <%= render 'geo_works/metadata', presenter: @presenter %>
+    <%= render 'geo_works/relationships', presenter: @presenter %>
   </div>
   <div class="col-sm-4">
     <%= render "show_actions", presenter: @presenter %>
     <%= render "file_actions", presenter: @presenter %>
     <%= t('.last_modified', value: @presenter.date_modified) %>
-    <%= render 'geo_concerns/representative_media', presenter: @presenter %>
+    <%= render 'geo_works/representative_media', presenter: @presenter %>
     <%= render 'social_media' %>
     <%= render 'citations', presenter: @presenter %>
   </div>
@@ -24,8 +24,8 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <%= render 'geo_concerns/related/geo_files', presenter: @presenter %>
-    <%= render 'geo_concerns/related/external_metadata_files', presenter: @presenter %>
+    <%= render 'geo_works/related/geo_files', presenter: @presenter %>
+    <%= render 'geo_works/related/external_metadata_files', presenter: @presenter %>
     <%= render 'workflow_actions_widget', presenter: @presenter %>
   </div>
 </div>

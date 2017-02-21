@@ -30,17 +30,17 @@ describe Hyrax::VectorWorksController, type: :controller do
 
   describe "#show_presenter" do
     it "is a vector work show presenter" do
-      expect(described_class.new.show_presenter.name).to eq("GeoConcerns::VectorWorkShowPresenter")
+      expect(described_class.new.show_presenter.name).to eq("GeoWorks::VectorWorkShowPresenter")
     end
   end
 
   describe '#geoblacklight' do
     # Tell RSpec where to find the geoblacklight route.
-    routes { GeoConcerns::Engine.routes }
+    routes { GeoWorks::Engine.routes }
     let(:builder) { double }
     before do
       sign_in user
-      allow(GeoConcerns::Discovery::DocumentBuilder).to receive(:new).and_return(builder)
+      allow(GeoWorks::Discovery::DocumentBuilder).to receive(:new).and_return(builder)
     end
 
     context 'with a valid geoblacklight document' do

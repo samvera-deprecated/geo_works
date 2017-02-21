@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "display a image work as its owner", type: :feature do
   let(:work_path) { "/concern/image_works/#{work.id}" }
   let(:title) { ['Completed Image'] }
-  let(:coverage) { GeoConcerns::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
+  let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
   let(:spatial) { ['France'] }
   let(:temporal) { ['1998-2006'] }
   let(:attributes) { { title: title, coverage: coverage, spatial: spatial, temporal: temporal, user: user } }

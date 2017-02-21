@@ -10,7 +10,7 @@ if ENV['COVERAGE'] || ENV['CI']
     add_filter '/spec'
     add_filter '/.internal_test_app'
     add_filter '/lib/generators'
-    add_filter '/lib/geo_concerns/version.rb'
+    add_filter '/lib/geo_works/version.rb'
   end
 end
 

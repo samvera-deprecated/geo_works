@@ -11,7 +11,7 @@ class TestAppGenerator < Rails::Generators::Base
   end
 
   def install_engine
-    generate 'geo_concerns:install'
+    generate 'geo_works:install'
   end
 
   def run_migrations

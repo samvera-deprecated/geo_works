@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe ::GeoConcerns::VectorWorkShowPresenter do
+RSpec.describe ::GeoWorks::VectorWorkShowPresenter do
   let(:solr_document) { SolrDocument.new(attributes) }
   let(:ability) { nil }
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "display a vector work as its owner", type: :feature do
   let(:work_path) { "/concern/vector_works/#{work.id}" }
   let(:title) { ['Completed Vector'] }
-  let(:coverage) { GeoConcerns::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
+  let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
   let(:spatial) { ['France'] }
   let(:temporal) { ['1998-2006'] }
   let(:attributes) { { title: title, coverage: coverage, spatial: spatial, temporal: temporal, user: user } }

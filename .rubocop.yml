@@ -24,37 +24,37 @@ Lint/UselessAssignment:
 Metrics/LineLength:
   Max: 100
   Exclude:
-    - 'app/models/concerns/geo_concerns/extractors/iso19139_helper.rb'
+    - 'app/models/concerns/geo_works/extractors/iso19139_helper.rb'
     - 'app/helpers/metadata_extraction_helper.rb'
     - 'app/models/concerns/file_set/image_file_behavior.rb'
     - 'app/models/concerns/file_set/raster_file_behavior.rb'
     - 'app/models/concerns/file_set/vector_file_behavior.rb'
     - 'app/models/concerns/georeferenced_behavior.rb'
     - 'app/models/solr_document.rb'
-    - 'app/schemas/geo_concerns/basic_geo_metadata_required.rb'
-    - 'app/services/geo_concerns/discovery/geoblacklight_document.rb'
+    - 'app/schemas/geo_works/basic_geo_metadata_required.rb'
+    - 'app/services/geo_works/discovery/geoblacklight_document.rb'
     - 'config/**/*.rb'
-    - 'app/values/geo_concerns/coverage.rb'
-    - 'app/values/geo_concerns/time_period.rb'
-    - 'lib/geo_concerns/fgdc_metadata_extractor.rb'
-    - 'lib/generators/geo_concerns/install_generator.rb'
+    - 'app/values/geo_works/coverage.rb'
+    - 'app/values/geo_works/time_period.rb'
+    - 'lib/geo_works/fgdc_metadata_extractor.rb'
+    - 'lib/generators/geo_works/install_generator.rb'
     - 'spec/**/*.rb'
 
 Metrics/AbcSize:
   Exclude:
-    - 'app/models/concerns/geo_concerns/extractors/iso19139_helper.rb'
-    - 'lib/geo_concerns/fgdc_metadata_extractor.rb'
+    - 'app/models/concerns/geo_works/extractors/iso19139_helper.rb'
+    - 'lib/geo_works/fgdc_metadata_extractor.rb'
 
 Metrics/MethodLength:
   Exclude:
     - 'Rakefile'
-    - 'app/models/concerns/geo_concerns/extractors/iso19139_helper.rb'
-    - 'app/services/geo_concerns/file_set_derivatives_service.rb'
+    - 'app/models/concerns/geo_works/extractors/iso19139_helper.rb'
+    - 'app/services/geo_works/file_set_derivatives_service.rb'
 
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
-    - 'lib/generators/geo_concerns/install_generator.rb'
+    - 'lib/generators/geo_works/install_generator.rb'
 
 Style/BlockDelimiters:
   Exclude:

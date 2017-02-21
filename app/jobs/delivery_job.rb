@@ -16,14 +16,14 @@ class DeliveryJob < ActiveJob::Base
     @file_set = ActiveFedora::Base.find(message['id'])
     uri = URI.parse(content_url)
     return if uri.path == ''
-    GeoConcerns::DeliveryService.new(file_set, uri.path).publish
+    GeoWorks::DeliveryService.new(file_set, uri.path).publish
   end
 
   def content_url
     case file_set.geo_mime_type
-    when *GeoConcerns::RasterFormatService.select_options.map(&:last)
+    when *GeoWorks::RasterFormatService.select_options.map(&:last)
       return derivatives_service.send(:derivative_url, 'display_raster')
-    when *GeoConcerns::VectorFormatService.select_options.map(&:last)
+    when *GeoWorks::VectorFormatService.select_options.map(&:last)
       return derivatives_service.send(:derivative_url, 'display_vector')
     else
       return ''
@@ -31,6 +31,6 @@ class DeliveryJob < ActiveJob::Base
   end
 
   def derivatives_service
-    GeoConcerns::FileSetDerivativesService.new(file_set)
+    GeoWorks::FileSetDerivativesService.new(file_set)
   end
 end

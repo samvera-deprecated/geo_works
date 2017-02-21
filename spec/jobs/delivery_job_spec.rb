@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'uri'
 
-describe GeoConcerns::DeliveryJob do
+describe GeoWorks::DeliveryJob do
   let(:id) { 'ab' }
   let(:message) { { 'id' => id, 'event' => 'CREATED', "exchange" => :geoserver } }
   let(:content_url) { 'file:/somewhere-to-display-copy' }
@@ -14,11 +14,11 @@ describe GeoConcerns::DeliveryJob do
   end
 
   describe '#perform' do
-    let(:service) { instance_double('GeoConcerns::DeliveryService') }
+    let(:service) { instance_double('GeoWorks::DeliveryService') }
     context 'local vector file' do
       it 'delegates to DeliveryService' do
         file_path = "#{content_url}/#{id}-display_vector.zip"
-        expect(GeoConcerns::DeliveryService).to receive(:new).with(file_set, URI(file_path).path).and_return(service)
+        expect(GeoWorks::DeliveryService).to receive(:new).with(file_set, URI(file_path).path).and_return(service)
         expect(service).to receive(:publish)
         subject.perform(message)
       end
@@ -28,7 +28,7 @@ describe GeoConcerns::DeliveryJob do
       let(:file_format) { 'image/tiff; gdal-format=GTiff' }
       it 'delegates to DeliveryService' do
         file_path = "#{content_url}/#{id}-display_raster.tif"
-        expect(GeoConcerns::DeliveryService).to receive(:new).with(file_set, URI(file_path).path).and_return(service)
+        expect(GeoWorks::DeliveryService).to receive(:new).with(file_set, URI(file_path).path).and_return(service)
         expect(service).to receive(:publish)
         subject.perform(message)
       end
@@ -37,7 +37,7 @@ describe GeoConcerns::DeliveryJob do
     context 'local image file' do
       let(:file_format) { 'image/jpeg' }
       it 'delegates to DeliveryService' do
-        expect(GeoConcerns::DeliveryService).not_to receive(:new)
+        expect(GeoWorks::DeliveryService).not_to receive(:new)
         subject.perform(message)
       end
     end

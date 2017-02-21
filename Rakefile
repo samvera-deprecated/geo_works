@@ -14,11 +14,11 @@ Dir.glob('tasks/*.rake').each { |r| import r }
 Bundler::GemHelper.install_tasks
 
 desc 'Run test suite'
-task spec: ['geo_concerns:rspec']
+task spec: ['geo_works:rspec']
 
 desc 'Spin up Solr & Fedora and run the test suite'
-task ci: ['geo_concerns:rubocop', 'engine_cart:generate'] do
-  Rake::Task['geo_concerns:spec'].invoke
+task ci: ['geo_works:rubocop', 'engine_cart:generate'] do
+  Rake::Task['geo_works:spec'].invoke
 end
 
 task clean: 'engine_cart:clean'

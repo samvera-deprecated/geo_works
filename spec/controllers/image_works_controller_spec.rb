@@ -6,7 +6,7 @@ describe Hyrax::ImageWorksController, type: :controller do
 
   describe "#show_presenter" do
     it "is a image work show presenter" do
-      expect(described_class.new.show_presenter).to eq(::GeoConcerns::ImageWorkShowPresenter)
+      expect(described_class.new.show_presenter).to eq(::GeoWorks::ImageWorkShowPresenter)
     end
   end
 

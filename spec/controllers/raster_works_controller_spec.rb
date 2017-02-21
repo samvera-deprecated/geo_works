@@ -30,7 +30,7 @@ describe Hyrax::RasterWorksController, type: :controller do
 
   describe "#show_presenter" do
     it "is a raster work show presenter" do
-      expect(described_class.new.show_presenter).to eq(GeoConcerns::RasterWorkShowPresenter)
+      expect(described_class.new.show_presenter).to eq(GeoWorks::RasterWorkShowPresenter)
     end
   end
 end

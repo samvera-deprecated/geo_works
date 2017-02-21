@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe GeoConcerns::ImageWorkShowPresenter do
+RSpec.describe GeoWorks::ImageWorkShowPresenter do
   let(:solr_document) { SolrDocument.new(attributes) }
   let(:ability) { nil }
 

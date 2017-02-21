@@ -1,0 +1,22 @@
+module GeoWorks
+  module GeoWorksHelper
+    # Returns human readable name of child geo work type.
+    # @param [GeoWorksShowPresenter] geo work show presenter
+    # @return[String]
+    def child_geo_works_type(presenter)
+      case presenter.class.to_s
+      when /ImageWorkShowPresenter/
+        'Raster'
+      when /RasterWorkShowPresenter/
+        'Vector'
+      end
+    end
+
+    # Returns human readable name of geo work type.
+    # @param [GeoWorksShowPresenter] geo work show presenter
+    # @return[String]
+    def geo_work_type(presenter)
+      presenter.human_readable_type.sub('Work', '')
+    end
+  end
+end
