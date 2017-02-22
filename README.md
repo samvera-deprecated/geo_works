@@ -1,11 +1,10 @@
-# Geo Concerns w/ Hyrax
-[![Build Status](https://img.shields.io/travis/projecthydra-labs/geo_works/master.svg)](https://travis-ci.org/projecthydra-labs/geo_works)
-[![Coverage Status](https://img.shields.io/coveralls/projecthydra-labs/geo_works/master.svg)](https://coveralls.io/github/projecthydra-labs/geo_works?branch=master)
-[![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/projecthydra-labs/geo_works)
-[![Gem Version](https://img.shields.io/gem/v/geo_works.svg)](https://github.com/projecthydra-labs/geo_works/releases)
-[![Slack Status](http://slack.projecthydra.org/badge.svg)](https://project-hydra.slack.com/messages/geomodeling/)
+# GeoWorks
+[![Build Status](https://img.shields.io/travis/geoconcerns/geo_works/master.svg)](https://travis-ci.org/geoconcerns/geo_works)
+[![Coverage Status](https://img.shields.io/coveralls/projecthydra-labs/geo_works/master.svg)](https://coveralls.io/github/geoconcerns/geo_works?branch=master)
+[![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/geoconcerns/geo_works)
+[![Gem Version](https://img.shields.io/gem/v/geo_works.svg)](https://github.com/geoconcerns/geo_works/releases)
 
-Rails application for developing Hydra Geo models. Built around Curation Concerns engine.
+Rails engine that provides geospatial models for [Hyrax](http://hyrax.projecthydra.org/) repository applications.
 
 * [Poster from Hydra Connect 2015](https://drive.google.com/file/d/0B5fLh2mc4FCbOUpWaTFOVmI4Nkk/view?pli=1)
 * [Current GeoWorks diagram](https://wiki.duraspace.org/download/attachments/69012114/pcdm-geo-model.pdf?version=1&modificationDate=1463590066822&api=v2)
@@ -133,7 +132,7 @@ rspec spec/path/to/your_spec.rb:linenumber
 1. Execute the following commands:
 	
 	```
-	$ git clone https://github.com/GeoWorks/geoserver-vagrant.git
+	$ git clone https://github.com/geoconcerns/geoserver-vagrant.git
 	$ cd geoserver-vagrant/
 	$ vagrant up
 	
