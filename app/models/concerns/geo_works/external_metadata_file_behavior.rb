@@ -25,7 +25,7 @@ module GeoWorks
     end
 
     def schema
-      (MetadataFormatService.label(geo_mime_type) || '').parameterize('_')
+      (MetadataFormatService.label(geo_mime_type) || '').parameterize(separator: '_')
     end
   end
 end
