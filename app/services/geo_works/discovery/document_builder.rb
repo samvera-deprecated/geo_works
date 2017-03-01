@@ -4,16 +4,15 @@ module GeoWorks
       attr_reader :geo_concern, :document
       delegate :to_json, :to_xml, :to_hash, to: :document
 
+      class_attribute :root_path_class
+
+      # Class used to generate urls for links in the document.
+      self.root_path_class = DocumentPath
+
       def initialize(geo_concern, document)
         @geo_concern = geo_concern
         @document = document
         builders.build(document)
-      end
-
-      # Returns a document path object. Used to get urls for links in the document.
-      # @return [DocumentPath] geoblacklight document as a json string
-      def root_path
-        @root_path ||= DocumentPath.new(geo_concern)
       end
 
       # Instantiates a CompositeBuilder object with an array of
@@ -55,7 +54,7 @@ module GeoWorks
       # Builds service reference fields such as thumbnail and download url.
       # @return [ReferencesBuilder] references builder for document
       def references_builder
-        ReferencesBuilder.new(geo_concern, root_path)
+        ReferencesBuilder.new(geo_concern)
       end
 
       # Instantiates a LayerInfoBuilder object.

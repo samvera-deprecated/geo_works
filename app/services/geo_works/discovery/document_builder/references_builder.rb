@@ -4,9 +4,9 @@ module GeoWorks
       class ReferencesBuilder
         attr_reader :geo_concern, :path
 
-        def initialize(geo_concern, path)
+        def initialize(geo_concern)
           @geo_concern = geo_concern
-          @path = path
+          @path = DocumentBuilder.root_path_class.new(geo_concern)
         end
 
         # Builds service reference fields such as thumbnail and download url.
