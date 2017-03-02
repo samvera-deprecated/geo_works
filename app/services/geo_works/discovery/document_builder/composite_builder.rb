@@ -4,8 +4,8 @@ module GeoWorks
       class CompositeBuilder
         attr_reader :services
 
-        def initialize(*services)
-          @services = services.compact
+        def initialize(services)
+          @services = services
         end
 
         # Runs each builder service to build a discovery document.
