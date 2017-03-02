@@ -1,5 +1,4 @@
-gem 'test_hyrax', '0.0.1.alpha'
-gem 'flipflop', github: 'jcoyne/flipflop', branch: 'hydra'
+gem 'hyrax', '0.0.1.alpha'
 gem 'geo_works'
 
 run 'bundle install'
