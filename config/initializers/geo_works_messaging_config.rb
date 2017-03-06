@@ -8,10 +8,6 @@ module GeoWorks
       GeoWorks::EventsGenerator.new
     end
 
-    def geoblacklight_client
-      local_client
-    end
-
     private
 
       def config_yaml
@@ -28,6 +24,6 @@ module GeoWorks
       end
 
       module_function :config, :config_yaml, :messenger, :local_client,
-                      :rabbit_client, :geoblacklight_client
+                      :rabbit_client
   end
 end

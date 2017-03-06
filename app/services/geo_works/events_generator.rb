@@ -15,7 +15,7 @@ module GeoWorks
     private
 
       def geoblacklight_event_generator
-        GeoblacklightEventGenerator.new(GeoWorks::Messaging.geoblacklight_client)
+        GeoblacklightEventGenerator.new
       end
 
       def geoserver_event_generator

@@ -1,6 +1,6 @@
 module GeoWorks
   class EventsGenerator
-    class GeoblacklightEventGenerator < BaseEventsGenerator
+    class GeoblacklightEventGenerator
       def record_created(record)
         publish_message(
           message("CREATED", record)
@@ -20,13 +20,11 @@ module GeoWorks
       end
 
       def message(type, record)
-        base_message(type, record).merge("exchange" => :geoblacklight,
-                                         "doc" => generate_document(record))
+        base_message(type, record).merge("doc" => generate_document(record))
       end
 
       def delete_message(type, record)
-        base_message(type, record).merge("exchange" => :geoblacklight,
-                                         "id" => slug(record))
+        base_message(type, record).merge("id" => slug(record))
       end
 
       private
@@ -38,6 +36,17 @@ module GeoWorks
         def slug(record)
           return record.id unless record.respond_to?(:provenance)
           "#{record.provenance.parameterize}-#{record.id}"
+        end
+
+        def base_message(type, record)
+          {
+            "id" => record.id,
+            "event" => type
+          }
+        end
+
+        def publish_message(message)
+          GeoblacklightJob.perform_later(message.to_json)
         end
     end
   end
