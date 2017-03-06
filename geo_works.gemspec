@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'json-schema', '>= 2.6.2'
   spec.add_dependency 'rgeoserver', '>= 0.10.0'
   spec.add_dependency 'simpler-tiles'
-  spec.add_dependency 'bunny'
   spec.add_dependency 'geoblacklight_messaging'
   spec.add_dependency 'jquery-ui-rails', '~> 5.0.5'
 

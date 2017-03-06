@@ -15,15 +15,6 @@ module GeoWorks
         YAML.load(ERB.new(File.read(config_file)).result)[Rails.env]
       end
 
-      def local_client
-        GeoWorks::LocalMessagingClient.new
-      end
-
-      def rabbit_client
-        GeoWorks::RabbitMessagingClient.new(Messaging.config['events']['server'])
-      end
-
-      module_function :config, :config_yaml, :messenger, :local_client,
-                      :rabbit_client
+      module_function :config, :config_yaml, :messenger
   end
 end
