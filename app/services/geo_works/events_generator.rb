@@ -19,7 +19,7 @@ module GeoWorks
       end
 
       def geoserver_event_generator
-        GeoserverEventGenerator.new(GeoWorks::Messaging.geoserver_client)
+        GeoserverEventGenerator.new
       end
   end
 end

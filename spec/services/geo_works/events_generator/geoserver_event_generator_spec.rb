@@ -1,40 +1,33 @@
 require 'spec_helper'
 
 RSpec.describe GeoWorks::EventsGenerator::GeoserverEventGenerator do
-  subject { described_class.new(rabbit_connection) }
-  let(:rabbit_connection) { instance_double(GeoWorks::RabbitMessagingClient, publish: true) }
-  let(:file_set) { FactoryGirl.build(:vector_file) }
-  let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
-  let(:attributes) { { id: 'geo-work-1',
-                       title: ['Geo Work'],
-                       description: ['geo work'],
-                       temporal: ['2011'] }
-  }
+  subject { described_class.new }
+  let(:id) { 'geo-work-1' }
+  let(:file_set) { instance_double(FileSet, id: id, geo_file_format?: true) }
+
+  before do
+    allow(DeliveryJob).to receive(:perform_later)
+  end
 
   describe "#derivatives_created" do
     it "publishes a persistent JSON message" do
-      file_set.save
       expected_result = {
-        "id" => file_set.id,
-        "event" => "CREATED",
-        "exchange" => "geoserver"
+        "id" => id,
+        "event" => "CREATED"
       }
       subject.derivatives_created(file_set)
-      expect(rabbit_connection).to have_received(:publish).with(expected_result.to_json)
+      expect(DeliveryJob).to have_received(:perform_later).with(expected_result)
     end
   end
 
   describe "#record_updated" do
     it "publishes a persistent JSON message with new title" do
-      file_set.title = ["New Geo Work"]
-      file_set.save!
       expected_result = {
-        "id" => file_set.id,
-        "event" => "UPDATED",
-        "exchange" => "geoserver"
+        "id" => id,
+        "event" => "UPDATED"
       }
       subject.record_updated(file_set)
-      expect(rabbit_connection).to have_received(:publish).with(expected_result.to_json)
+      expect(DeliveryJob).to have_received(:perform_later).with(expected_result)
     end
   end
 end

@@ -12,10 +12,6 @@ module GeoWorks
       local_client
     end
 
-    def geoserver_client
-      local_client
-    end
-
     private
 
       def config_yaml
@@ -32,6 +28,6 @@ module GeoWorks
       end
 
       module_function :config, :config_yaml, :messenger, :local_client,
-                      :rabbit_client, :geoblacklight_client, :geoserver_client
+                      :rabbit_client, :geoblacklight_client
   end
 end
