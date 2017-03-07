@@ -49,7 +49,7 @@ module GeoWorks
       if File.exist?(file_path)
         inject_into_file file_path, after: /include Hyrax::FileSetsControllerBehavior.*$/ do
           "\n    include GeoConcerns::FileSetsControllerBehavior\n" \
-            "    include GeoConcerns::MessengerBehavior\n"
+            "    include GeoConcerns::EventsBehavior\n"
         end
       else
         copy_file 'controllers/hyrax/file_sets_controller.rb', file_path

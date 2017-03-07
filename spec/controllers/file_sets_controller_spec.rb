@@ -20,11 +20,11 @@ describe Hyrax::FileSetsController, type: :controller do
   end
 
   describe 'messaging' do
-    let(:messenger) { instance_double(GeoWorks::EventsGenerator) }
+    let(:generator) { instance_double(GeoWorks::EventsGenerator) }
 
     before do
       sign_in user
-      allow(GeoWorks::Messaging).to receive(:messenger).and_return(messenger)
+      allow(GeoWorks::Events).to receive(:generator).and_return(generator)
     end
 
     context 'after updating metadata' do
@@ -42,8 +42,8 @@ describe Hyrax::FileSetsController, type: :controller do
         file_set.destroy
       end
 
-      it 'calls the record_updated messenger method' do
-        expect(messenger).to receive(:record_updated)
+      it 'calls the record_updated generator method' do
+        expect(generator).to receive(:record_updated)
         post :update, params: {
           id: file_set,
           file_set: { title: ['new_title'], keyword: [''], permissions_attributes: [{ type: 'person', name: 'archivist1', access: 'edit' }] }
@@ -61,8 +61,8 @@ describe Hyrax::FileSetsController, type: :controller do
         file_set
       end
 
-      it 'calls the record_deleted messenger method' do
-        expect(messenger).to receive(:record_deleted)
+      it 'calls the record_deleted generator method' do
+        expect(generator).to receive(:record_deleted)
         delete :destroy, params: { id: file_set }
       end
     end

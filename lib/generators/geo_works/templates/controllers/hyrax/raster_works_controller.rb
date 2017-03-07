@@ -3,6 +3,6 @@ class Hyrax::RasterWorksController < ApplicationController
   include Hyrax::ParentContainer
   include GeoWorks::RasterWorksControllerBehavior
   include GeoWorks::GeoblacklightControllerBehavior
-  include GeoWorks::MessengerBehavior
+  include GeoWorks::EventsBehavior
   self.curation_concern_type = RasterWork
 end

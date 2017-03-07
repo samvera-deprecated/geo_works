@@ -19,8 +19,8 @@ module GeoWorks
         create_vector_derivatives(filename)
       end
 
-      # Once all the derivatives are created, send a derivatives created message
-      geo_works_messenger.record_created(file_set)
+      # Once all the derivatives are created, send a created message
+      geo_works_events_generator.record_created(file_set)
     end
 
     private
@@ -60,8 +60,8 @@ module GeoWorks
           GeoWorks::VectorFormatService.select_options.map(&:last)
       end
 
-      def geo_works_messenger
-        @geo_works_messenger ||= GeoWorks::Messaging.messenger
+      def geo_works_events_generator
+        @geo_works_events_generator ||= GeoWorks::Events.generator
       end
   end
 end

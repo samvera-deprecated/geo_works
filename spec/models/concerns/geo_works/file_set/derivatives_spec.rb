@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 shared_examples 'a set of raster derivatives' do
-  let(:messenger) { instance_double(GeoWorks::EventsGenerator) }
+  let(:generator) { instance_double(GeoWorks::EventsGenerator) }
   before do
-    allow(GeoWorks::Messaging).to receive(:messenger).and_return(messenger)
-    allow(messenger).to receive(:record_created)
+    allow(GeoWorks::Events).to receive(:generator).and_return(generator)
+    allow(generator).to receive(:record_created)
   end
   it 'makes a thumbnail' do
     new_thumb = "#{Rails.root}/tmp/derivatives/#{file_set.id}/thumbnail.thumbnail"
-    expect(messenger).to receive(:record_created).with(file_set)
+    expect(generator).to receive(:record_created).with(file_set)
     expect {
       file_set.create_derivatives(file_name)
     }.to change { Dir[new_thumb].empty? }
@@ -25,14 +25,14 @@ shared_examples 'a set of raster derivatives' do
 end
 
 shared_examples 'a set of vector derivatives' do
-  let(:messenger) { instance_double(GeoWorks::EventsGenerator) }
+  let(:generator) { instance_double(GeoWorks::EventsGenerator) }
   before do
-    allow(GeoWorks::Messaging).to receive(:messenger).and_return(messenger)
-    allow(messenger).to receive(:record_created)
+    allow(GeoWorks::Events).to receive(:generator).and_return(generator)
+    allow(generator).to receive(:record_created)
   end
   it 'makes a thumbnail' do
     new_thumb = "#{Rails.root}/tmp/derivatives/#{file_set.id}/thumbnail.thumbnail"
-    expect(messenger).to receive(:record_created).with(file_set)
+    expect(generator).to receive(:record_created).with(file_set)
     expect {
       file_set.create_derivatives(file_name)
     }.to change { Dir[new_thumb].empty? }
