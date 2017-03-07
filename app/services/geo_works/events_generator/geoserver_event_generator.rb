@@ -11,7 +11,7 @@ module GeoWorks
       private
 
         def publish_message(message)
-          DeliveryJob.perform_later(message)
+          GeoserverDeliveryJob.perform_later(message)
         end
 
         def message(type, record)

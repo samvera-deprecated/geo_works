@@ -3,8 +3,8 @@ module GeoWorks
     class_attribute :services
 
     # Array of event generator services.
-    # - GeoblacklightEventGenerator: syncronizes with geoblacklight instance.
-    # - GeoserverEventGenerator: syncronizes with geoserver instance.
+    # - GeoblacklightEventGenerator: synchronizes with geoblacklight instance.
+    # - GeoserverEventGenerator: synchronizes with geoserver instance.
     self.services = [
       GeoblacklightEventGenerator,
       GeoserverEventGenerator

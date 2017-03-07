@@ -6,7 +6,7 @@ RSpec.describe GeoWorks::EventsGenerator::GeoserverEventGenerator do
   let(:file_set) { instance_double(FileSet, id: id, geo_file_format?: true) }
 
   before do
-    allow(DeliveryJob).to receive(:perform_later)
+    allow(GeoserverDeliveryJob).to receive(:perform_later)
   end
 
   describe "#derivatives_created" do
@@ -16,7 +16,7 @@ RSpec.describe GeoWorks::EventsGenerator::GeoserverEventGenerator do
         "event" => "CREATED"
       }
       subject.derivatives_created(file_set)
-      expect(DeliveryJob).to have_received(:perform_later).with(expected_result)
+      expect(GeoserverDeliveryJob).to have_received(:perform_later).with(expected_result)
     end
   end
 end

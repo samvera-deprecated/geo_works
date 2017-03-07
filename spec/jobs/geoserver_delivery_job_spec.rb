@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'uri'
 
-describe GeoWorks::DeliveryJob do
+describe GeoWorks::GeoserverDeliveryJob do
   let(:id) { 'ab' }
   let(:message) { { 'id' => id, 'event' => 'CREATED', "exchange" => :geoserver } }
   let(:content_url) { 'file:/somewhere-to-display-copy' }
