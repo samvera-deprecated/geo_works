@@ -19,23 +19,18 @@ module GeoWorks
         )
       end
 
-      def message(type, record)
-        base_message(type, record).merge("doc" => generate_document(record))
-      end
-
-      def delete_message(type, record)
-        base_message(type, record).merge("id" => slug(record))
-      end
-
       private
 
-        def generate_document(record)
-          Discovery::DocumentBuilder.new(record, Discovery::GeoblacklightDocument.new)
+        def publish_message(message)
+          GeoblacklightJob.perform_later(message.to_json)
         end
 
-        def slug(record)
-          return record.id unless record.respond_to?(:provenance)
-          "#{record.provenance.parameterize}-#{record.id}"
+        def message(type, record)
+          base_message(type, record).merge("doc" => generate_document(record))
+        end
+
+        def delete_message(type, record)
+          base_message(type, record).merge("id" => slug(record))
         end
 
         def base_message(type, record)
@@ -45,8 +40,13 @@ module GeoWorks
           }
         end
 
-        def publish_message(message)
-          GeoblacklightJob.perform_later(message.to_json)
+        def generate_document(record)
+          Discovery::DocumentBuilder.new(record, Discovery::GeoblacklightDocument.new)
+        end
+
+        def slug(record)
+          return record.id unless record.respond_to?(:provenance)
+          "#{record.provenance.parameterize}-#{record.id}"
         end
     end
   end

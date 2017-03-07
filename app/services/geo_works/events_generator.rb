@@ -3,7 +3,6 @@ module GeoWorks
     delegate :record_created, to: :generators
     delegate :record_deleted, to: :generators
     delegate :record_updated, to: :generators
-    delegate :derivatives_created, to: :generators
 
     def generators
       @generators ||= CompositeGenerator.new(

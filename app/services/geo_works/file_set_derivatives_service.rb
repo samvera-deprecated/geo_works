@@ -20,7 +20,7 @@ module GeoWorks
       end
 
       # Once all the derivatives are created, send a derivatives created message
-      geo_works_messenger.derivatives_created(file_set)
+      geo_works_messenger.record_created(file_set)
     end
 
     private
