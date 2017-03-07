@@ -1,19 +1,10 @@
 module GeoWorks
   class EventsGenerator
     class GeoserverEventGenerator
-      def record_created(record)
-        return unless geo_file?(record)
+      def derivatives_created(record)
+        return unless geo_file_set?(record)
         publish_message(
           message("CREATED", record)
-        )
-      end
-
-      def record_deleted(record); end
-
-      def record_updated(record)
-        return unless geo_file?(record)
-        publish_message(
-          message("UPDATED", record)
         )
       end
 
@@ -34,7 +25,7 @@ module GeoWorks
           }
         end
 
-        def geo_file?(record)
+        def geo_file_set?(record)
           record.respond_to?(:geo_file_format?) && record.geo_file_format?
         end
     end

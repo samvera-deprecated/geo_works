@@ -4,11 +4,11 @@ shared_examples 'a set of raster derivatives' do
   let(:generator) { instance_double(GeoWorks::EventsGenerator) }
   before do
     allow(GeoWorks::EventsGenerator).to receive(:new).and_return(generator)
-    allow(generator).to receive(:record_created)
+    allow(generator).to receive(:derivatives_created)
   end
   it 'makes a thumbnail' do
     new_thumb = "#{Rails.root}/tmp/derivatives/#{file_set.id}/thumbnail.thumbnail"
-    expect(generator).to receive(:record_created).with(file_set)
+    expect(generator).to receive(:derivatives_created).with(file_set)
     expect {
       file_set.create_derivatives(file_name)
     }.to change { Dir[new_thumb].empty? }
@@ -28,11 +28,11 @@ shared_examples 'a set of vector derivatives' do
   let(:generator) { instance_double(GeoWorks::EventsGenerator) }
   before do
     allow(GeoWorks::EventsGenerator).to receive(:new).and_return(generator)
-    allow(generator).to receive(:record_created)
+    allow(generator).to receive(:derivatives_created)
   end
   it 'makes a thumbnail' do
     new_thumb = "#{Rails.root}/tmp/derivatives/#{file_set.id}/thumbnail.thumbnail"
-    expect(generator).to receive(:record_created).with(file_set)
+    expect(generator).to receive(:derivatives_created).with(file_set)
     expect {
       file_set.create_derivatives(file_name)
     }.to change { Dir[new_thumb].empty? }

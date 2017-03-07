@@ -9,24 +9,13 @@ RSpec.describe GeoWorks::EventsGenerator::GeoserverEventGenerator do
     allow(DeliveryJob).to receive(:perform_later)
   end
 
-  describe "#record_created" do
+  describe "#derivatives_created" do
     it "publishes a persistent JSON message" do
       expected_result = {
         "id" => id,
         "event" => "CREATED"
       }
-      subject.record_created(file_set)
-      expect(DeliveryJob).to have_received(:perform_later).with(expected_result)
-    end
-  end
-
-  describe "#record_updated" do
-    it "publishes a persistent JSON message with new title" do
-      expected_result = {
-        "id" => id,
-        "event" => "UPDATED"
-      }
-      subject.record_updated(file_set)
+      subject.derivatives_created(file_set)
       expect(DeliveryJob).to have_received(:perform_later).with(expected_result)
     end
   end

@@ -1,24 +1,24 @@
 module GeoWorks
   class EventsGenerator
+    class_attribute :services
+
+    # Array of event generator services.
+    # - GeoblacklightEventGenerator: syncronizes with geoblacklight instance.
+    # - GeoserverEventGenerator: syncronizes with geoserver instance.
+    self.services = [
+      GeoblacklightEventGenerator,
+      GeoserverEventGenerator
+    ]
+
     delegate :record_created, to: :generators
     delegate :record_deleted, to: :generators
     delegate :record_updated, to: :generators
+    delegate :derivatives_created, to: :generators
 
     def generators
       @generators ||= CompositeGenerator.new(
-        geoblacklight_event_generator,
-        geoserver_event_generator
+        services.map(&:new)
       )
     end
-
-    private
-
-      def geoblacklight_event_generator
-        GeoblacklightEventGenerator.new
-      end
-
-      def geoserver_event_generator
-        GeoserverEventGenerator.new
-      end
   end
 end
