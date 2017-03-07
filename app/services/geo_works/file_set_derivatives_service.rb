@@ -61,7 +61,7 @@ module GeoWorks
       end
 
       def geo_works_events_generator
-        @geo_works_events_generator ||= GeoWorks::Events.generator
+        @geo_works_events_generator ||= GeoWorks::EventsGenerator.new
       end
   end
 end

@@ -24,7 +24,7 @@ describe Hyrax::FileSetsController, type: :controller do
 
     before do
       sign_in user
-      allow(GeoWorks::Events).to receive(:generator).and_return(generator)
+      allow(GeoWorks::EventsGenerator).to receive(:new).and_return(generator)
     end
 
     context 'after updating metadata' do

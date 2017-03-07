@@ -3,7 +3,7 @@ require 'spec_helper'
 shared_examples 'a set of raster derivatives' do
   let(:generator) { instance_double(GeoWorks::EventsGenerator) }
   before do
-    allow(GeoWorks::Events).to receive(:generator).and_return(generator)
+    allow(GeoWorks::EventsGenerator).to receive(:new).and_return(generator)
     allow(generator).to receive(:record_created)
   end
   it 'makes a thumbnail' do
@@ -27,7 +27,7 @@ end
 shared_examples 'a set of vector derivatives' do
   let(:generator) { instance_double(GeoWorks::EventsGenerator) }
   before do
-    allow(GeoWorks::Events).to receive(:generator).and_return(generator)
+    allow(GeoWorks::EventsGenerator).to receive(:new).and_return(generator)
     allow(generator).to receive(:record_created)
   end
   it 'makes a thumbnail' do
