@@ -3,8 +3,8 @@ module GeoWorks
     class CompositeGenerator
       attr_reader :generators
 
-      def initialize(*generators)
-        @generators = generators.compact
+      def initialize(generators)
+        @generators = generators
       end
 
       def method_missing(m, *args)
