@@ -28,6 +28,7 @@ RSpec.describe GeoWorks::EventsGenerator::GeoblacklightEventGenerator do
                           dc_description_s: "geo work",
                           dct_temporal_sm: ["2011"],
                           solr_year_i: 2011,
+                          layer_id_s: 'geo-work-1',
                           layer_modified_dt: layer_modified,
                           dct_references_s: refs.to_json,
                           layer_geom_type_s: "Mixed" }

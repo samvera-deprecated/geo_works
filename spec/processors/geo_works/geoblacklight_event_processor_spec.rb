@@ -14,7 +14,7 @@ RSpec.describe GeoWorks::GeoblacklightEventProcessor do
   end
   let(:geoblacklight_document) do
     {
-      'layer_slug_s' => id,
+      'layer_slug_s' => 'geo-work-1',
       'dc_title_s' => title
     }
   end
@@ -42,7 +42,7 @@ RSpec.describe GeoWorks::GeoblacklightEventProcessor do
   context 'when given a creation event with an valid document' do
     let(:type) { 'CREATED' }
     it 'adds the geoblacklight document' do
-      doc = '[{"layer_slug_s":"stanford-dp018hs9766","dc_title_s":"geo title"}]'
+      doc = '[{"layer_slug_s":"geo-work-1","dc_title_s":"geo title"}]'
       expect(client).to receive(:update).with(hash_including(data: doc))
       expect(client).to receive(:commit)
       expect(processor.process).to eq true
@@ -53,7 +53,7 @@ RSpec.describe GeoWorks::GeoblacklightEventProcessor do
     let(:type) { 'UPDATED' }
     let(:title) { 'updated geo title' }
     it 'updates that resource' do
-      doc = '[{"layer_slug_s":"stanford-dp018hs9766","dc_title_s":"updated geo title"}]'
+      doc = '[{"layer_slug_s":"geo-work-1","dc_title_s":"updated geo title"}]'
       expect(client).to receive(:update).with(hash_including(data: doc))
       expect(client).to receive(:commit)
       expect(processor.process).to eq true
