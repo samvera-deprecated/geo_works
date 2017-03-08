@@ -4,6 +4,10 @@ describe Hyrax::ImageWorksController, type: :controller do
   let(:user) { create(:admin) }
   before { sign_in user }
 
+  before do
+    allow(GeoblacklightJob).to receive(:perform_later)
+  end
+
   describe "#show_presenter" do
     it "is a image work show presenter" do
       expect(described_class.new.show_presenter).to eq(::GeoWorks::ImageWorkShowPresenter)

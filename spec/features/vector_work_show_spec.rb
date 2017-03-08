@@ -11,6 +11,7 @@ describe "display a vector work as its owner", type: :feature do
   let(:vector_file) { test_data_fixture_path('files/tufts-cambridgegrid100-04.zip') }
 
   before do
+    allow(GeoblacklightJob).to receive(:perform_later)
     allow(CharacterizeJob).to receive(:perform_later)
     create(:sipity_entity, proxy_for_global_id: work.to_global_id.to_s)
   end

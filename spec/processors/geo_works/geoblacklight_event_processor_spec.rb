@@ -68,4 +68,13 @@ RSpec.describe GeoWorks::GeoblacklightEventProcessor do
       expect(processor.process).to eq true
     end
   end
+
+  context 'when given a delete event with an invalid document' do
+    let(:type) { 'DELETED' }
+    it 'returns false' do
+      error = RSolr::Error::Http.new 'test', 'test'
+      expect(client).to receive(:delete_by_query).and_raise(error)
+      expect(processor.process).to eq false
+    end
+  end
 end

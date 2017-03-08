@@ -22,11 +22,11 @@ module GeoWorks
       private
 
         def publish_message(message)
-          GeoblacklightJob.perform_later(message.to_json)
+          GeoblacklightJob.perform_later(message)
         end
 
         def message(type, record)
-          base_message(type, record).merge("doc" => generate_document(record))
+          base_message(type, record).merge("doc" => generate_document(record).to_hash)
         end
 
         def delete_message(type, record)

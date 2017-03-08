@@ -17,20 +17,20 @@ RSpec.describe GeoWorks::EventsGenerator::GeoblacklightEventGenerator do
     datetime = record.solr_document[:system_modified_dtsi]
     DateTime.parse(datetime.to_s).utc.xmlschema
   end
-  let(:discovery_doc) { { "geoblacklight_version" => "1.0",
-                          "dc_identifier_s" => "geo-work-1",
-                          "layer_slug_s" => "institution-geo-work-1",
-                          "uuid" => "institution-geo-work-1",
-                          "dc_title_s" => record.title.first,
-                          "solr_geom" => "ENVELOPE(-71.0, -69.0, 43.0, 42.0)",
-                          "dct_provenance_s" => "Institution",
-                          "dc_rights_s" => "Public",
-                          "dc_description_s" => "geo work",
-                          "dct_temporal_sm" => ["2011"],
-                          "solr_year_i" => 2011,
-                          "layer_modified_dt" => layer_modified,
-                          "dct_references_s" => refs.to_json,
-                          "layer_geom_type_s" => "Mixed" }
+  let(:discovery_doc) { { geoblacklight_version: "1.0",
+                          dc_identifier_s: "geo-work-1",
+                          layer_slug_s: "institution-geo-work-1",
+                          uuid: "institution-geo-work-1",
+                          dc_title_s: record.title.first,
+                          solr_geom: "ENVELOPE(-71.0, -69.0, 43.0, 42.0)",
+                          dct_provenance_s: "Institution",
+                          dc_rights_s: "Public",
+                          dc_description_s: "geo work",
+                          dct_temporal_sm: ["2011"],
+                          solr_year_i: 2011,
+                          layer_modified_dt: layer_modified,
+                          dct_references_s: refs.to_json,
+                          layer_geom_type_s: "Mixed" }
   }
 
   before do
@@ -48,7 +48,7 @@ RSpec.describe GeoWorks::EventsGenerator::GeoblacklightEventGenerator do
         "doc" => discovery_doc
       }
       subject.record_created(record)
-      expect(GeoblacklightJob).to have_received(:perform_later).with(expected_result.to_json)
+      expect(GeoblacklightJob).to have_received(:perform_later).with(expected_result)
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe GeoWorks::EventsGenerator::GeoblacklightEventGenerator do
       }
 
       subject.record_deleted(record)
-      expect(GeoblacklightJob).to have_received(:perform_later).with(expected_result.to_json)
+      expect(GeoblacklightJob).to have_received(:perform_later).with(expected_result)
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe GeoWorks::EventsGenerator::GeoblacklightEventGenerator do
         "doc" => discovery_doc
       }
       subject.record_updated(record)
-      expect(GeoblacklightJob).to have_received(:perform_later).with(expected_result.to_json)
+      expect(GeoblacklightJob).to have_received(:perform_later).with(expected_result)
     end
   end
 end
