@@ -3,6 +3,10 @@ require 'spec_helper'
 RSpec.feature 'VectorWorkController', type: :feature do
   let(:user) { FactoryGirl.create(:admin) }
 
+  before do
+    allow(GeoblacklightJob).to receive(:perform_later)
+  end
+
   context "an authorized user" do
     before do
       allow(CharacterizeJob).to receive(:perform_later)

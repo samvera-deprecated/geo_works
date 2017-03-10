@@ -58,7 +58,7 @@ module GeoWorks
             dct_temporal_sm: temporal,
             solr_year_i: layer_year,
             layer_modified_dt: layer_modified,
-            layer_id_s: wxs_identifier,
+            layer_id_s: layer_id,
             dct_references_s: clean_document(references).to_json.to_s,
             layer_geom_type_s: geom_type,
             dc_format_s: process_format_codes(format),
@@ -137,6 +137,12 @@ module GeoWorks
           else
             schema_errors(clean)
           end
+        end
+
+        # Use identifier as layer_id id when there is no wxs_identifier.
+        # Causes errors in Geoblacklight views.
+        def layer_id
+          wxs_identifier || identifier
         end
     end
   end

@@ -1,6 +1,6 @@
 module GeoWorks
   class EventsGenerator
-    class GeoblacklightEventGenerator < BaseEventsGenerator
+    class GeoblacklightEventGenerator
       def record_created(record)
         publish_message(
           message("CREATED", record)
@@ -19,17 +19,26 @@ module GeoWorks
         )
       end
 
-      def message(type, record)
-        base_message(type, record).merge("exchange" => :geoblacklight,
-                                         "doc" => generate_document(record))
-      end
-
-      def delete_message(type, record)
-        base_message(type, record).merge("exchange" => :geoblacklight,
-                                         "id" => slug(record))
-      end
-
       private
+
+        def publish_message(message)
+          GeoblacklightJob.perform_later(message)
+        end
+
+        def message(type, record)
+          base_message(type, record).merge("doc" => generate_document(record).to_hash)
+        end
+
+        def delete_message(type, record)
+          base_message(type, record).merge("id" => slug(record))
+        end
+
+        def base_message(type, record)
+          {
+            "id" => record.id,
+            "event" => type
+          }
+        end
 
         def generate_document(record)
           Discovery::DocumentBuilder.new(record, Discovery::GeoblacklightDocument.new)
