@@ -1,2 +1,1 @@
 gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'master'
-gem 'blacklight', github: 'projectblacklight/blacklight', ref: '380d0c4'
