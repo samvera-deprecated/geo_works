@@ -6,9 +6,6 @@ module GeoWorks
     # For details on the schema,
     # @see 'https://github.com/geoblacklight/geoblacklight/wiki/Schema'
     class GeoblacklightDocument < AbstractDocument
-      GEOBLACKLIGHT_RELEASE_VERSION = 'v1.1.2'.freeze
-      GEOBLACKLIGHT_SCHEMA = JSON.parse(open("https://raw.githubusercontent.com/geoblacklight/geoblacklight/#{GEOBLACKLIGHT_RELEASE_VERSION}/schema/geoblacklight-schema.json").read).freeze
-
       # Implements the to_hash method on the abstract document.
       # @param _args [Array<Object>] arguments needed for the renderer, unused here
       # @return [Hash] geoblacklight document as a hash
@@ -111,19 +108,25 @@ module GeoWorks
         # Returns the content of geoblacklight JSON-Schema document.
         # @return [Hash] geoblacklight json schema
         def schema
-          GEOBLACKLIGHT_SCHEMA
+          JSON.parse(File.read(schema_path))
+        end
+
+        # Returns a path to the geoblackligh schema document
+        # @return [String]
+        def schema_path
+          File.join(GeoWorks.root, 'config', 'discovery', 'geoblacklight-schema.json')
         end
 
         # Validates the geoblacklight document against the json schema.
         # @return [Boolean] is the document valid?
         def valid?(doc)
-          JSON::Validator.validate(schema, doc, fragment: '#/properties/layer')
+          JSON::Validator.validate(schema, doc, fragment: '#/definitions/layer')
         end
 
         # Returns a hash of errors from json schema validation.
         # @return [Hash] json schema validation errors
         def schema_errors(doc)
-          { error: JSON::Validator.fully_validate(schema, doc, fragment: '#/properties/layer') }
+          { error: JSON::Validator.fully_validate(schema, doc, fragment: '#/definitions/layer') }
         end
 
         # Cleans the geoblacklight document hash by removing unused fields,

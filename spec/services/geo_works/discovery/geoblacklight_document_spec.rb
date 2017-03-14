@@ -11,7 +11,7 @@ describe GeoWorks::Discovery::GeoblacklightDocument do
     context 'incomplete data' do
       let(:document_hash) { Hash.new }
 
-      it 'failed to validate the document hash' do
+      it 'fails to validate the document hash' do
         expect(subject.to_hash).to include(:error)
         expect(subject.to_hash[:error].size).to eq(6)
       end
