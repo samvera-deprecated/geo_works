@@ -1,1 +1,0 @@
-gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'master'

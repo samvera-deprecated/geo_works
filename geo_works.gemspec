@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.2.2' # same as Rails 5
 
-  spec.add_dependency 'hyrax'
+  spec.add_dependency 'hyrax', '>= 1.0.0.rc1', '< 2.0'
   spec.add_dependency 'leaflet-rails', '~> 0.7'
   spec.add_dependency 'json-schema', '>= 2.6.2'
   spec.add_dependency 'rgeoserver', '>= 0.10.0'
