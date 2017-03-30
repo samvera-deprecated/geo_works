@@ -4,7 +4,8 @@ Code: [![Build Status](https://img.shields.io/travis/geoconcerns/geo_works/maste
 [![Coverage Status](https://img.shields.io/coveralls/projecthydra-labs/geo_works/master.svg)](https://coveralls.io/github/geoconcerns/geo_works?branch=master)
 [![Code Climate](https://codeclimate.com/github/geoconcerns/geo_works/badges/gpa.svg)](https://codeclimate.com/github/geoconcerns/geo_works)
 
-Docs: [![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/geoconcerns/geo_works)
+Docs: [![Documentation Status](https://inch-ci.org/github/geoconcerns/geo_works.svg?branch=master)](https://inch-ci.org/github/geoconcerns/geo_works)
+[![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/geoconcerns/geo_works)
 [![Gem Version](https://img.shields.io/gem/v/geo_works.svg)](https://github.com/geoconcerns/geo_works/releases)
 
 Rails engine that provides geospatial models for [Hyrax](http://hyrax.projecthydra.org/) repository applications.
