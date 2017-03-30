@@ -1,7 +1,10 @@
 # GeoWorks
-[![Build Status](https://img.shields.io/travis/geoconcerns/geo_works/master.svg)](https://travis-ci.org/geoconcerns/geo_works)
+
+Code: [![Build Status](https://img.shields.io/travis/geoconcerns/geo_works/master.svg)](https://travis-ci.org/geoconcerns/geo_works)
 [![Coverage Status](https://img.shields.io/coveralls/projecthydra-labs/geo_works/master.svg)](https://coveralls.io/github/geoconcerns/geo_works?branch=master)
-[![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/geoconcerns/geo_works)
+[![Code Climate](https://codeclimate.com/github/geoconcerns/geo_works/badges/gpa.svg)](https://codeclimate.com/github/geoconcerns/geo_works)
+
+Docs: [![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/geoconcerns/geo_works)
 [![Gem Version](https://img.shields.io/gem/v/geo_works.svg)](https://github.com/geoconcerns/geo_works/releases)
 
 Rails engine that provides geospatial models for [Hyrax](http://hyrax.projecthydra.org/) repository applications.
@@ -37,11 +40,11 @@ Linux:
   ```
   libgdal-dev
   libcairo2-dev
-  libpango1.0-dev 
+  libpango1.0-dev
   ```
 
 - Compile:
-	
+
   ```
   $ git clone git@github.com:propublica/simple-tiles.git
   $ cd simple-tiles
@@ -101,7 +104,7 @@ rspec spec/path/to/your_spec.rb:linenumber
    - Docker Toolbox: [https://www.docker.com/products/docker-toolbox](https://www.docker.com/products/docker-toolbox)
 
 1. Execute the following command in the geo_works directory:
-   
+
    ```
    $ source ./run-docker.sh
    ```
@@ -130,10 +133,10 @@ rspec spec/path/to/your_spec.rb:linenumber
 	- [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
 	- [https://www.vagrantup.com/docs/installation/](https://www.vagrantup.com/docs/installation/)
 1. Execute the following commands:
-	
+
 	```
 	$ git clone https://github.com/geoconcerns/geoserver-vagrant.git
 	$ cd geoserver-vagrant/
 	$ vagrant up
-	
+
 	```
