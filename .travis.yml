@@ -26,6 +26,7 @@ services:
 addons:
   apt:
     packages:
+    - libgdal1h
     - libgdal-dev
     - gdal-bin
     - libcairo2-dev
