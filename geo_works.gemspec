@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = GeoWorks::VERSION
   spec.authors       = [ 'James Griffin', 'Darren Hardy', 'John Huck', 'Eric James', 'Eliot Jordan' ]
   spec.email         = ['jrgriffiniii@gmail.com', 'drh@stanford.edu', 'jhuck@ualberta.ca', 'eric.james@yale.edu', 'eliotj@princeton.edu']
-  spec.summary       = %q{Rails engine for Hydra Geo models. Built around Curation Concerns engine. }
-  spec.description   = %q{Rails engine for Hydra Geo models. Built around Curation Concerns engine. }
-  spec.homepage      = 'https://github.com/projecthydra-labs/geo_works'
+  spec.summary       = %q{Rails engine for Hydra Geo models. Built around the Hyrax engine. }
+  spec.description   = %q{Rails engine for Hydra Geo models. Built around the Hyrax engine. }
+  spec.homepage      = 'https://github.com/samvera-labs/geo_works'
   spec.license       = 'APACHE2'
 
   spec.files = `git ls-files | grep -v ^spec/fixtures`.split($\)
