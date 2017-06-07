@@ -145,7 +145,7 @@ describe GeoWorks::Discovery::DocumentBuilder do
       end
 
       it 'has layer info fields' do
-        expect(document['layer_geom_type_s']).to eq('Scanned Map')
+        expect(document['layer_geom_type_s']).to eq('Image')
         expect(document['dc_format_s']).to eq('TIFF')
       end
     end

@@ -23,7 +23,7 @@ module GeoWorks
           def geom_type
             case geo_concern.class.to_s
             when /ImageWorkShowPresenter/
-              'Scanned Map'
+              'Image'
             when /RasterWorkShowPresenter/
               'Raster'
             when /VectorWorkShowPresenter/
