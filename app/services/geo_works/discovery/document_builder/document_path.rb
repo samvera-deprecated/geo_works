@@ -42,15 +42,19 @@ module GeoWorks
           # Returns the first geo file set presenter attached to work.
           # @return [FileSetPresenter] geo file set presenter
           def file_set
-            return unless geo_concern.geo_file_set_presenters
-            geo_concern.geo_file_set_presenters.first
+            @file_set ||= begin
+              presenters = geo_concern.geo_file_set_presenters
+              presenters ? presenters.first : nil
+            end
           end
 
           # Returns the first metadata file set presenter attached to work.
           # @return [FileSetPresenter] metadata file set presenter
           def metadata_file_set
-            return unless geo_concern.external_metadata_file_set_presenters
-            geo_concern.external_metadata_file_set_presenters.first
+            @metadata_file_set ||= begin
+              presenters = geo_concern.external_metadata_file_set_presenters
+              presenters ? presenters.first : nil
+            end
           end
 
           # Instantiates a DocumentHelper object.
