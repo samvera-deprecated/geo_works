@@ -12,7 +12,6 @@ module GeoWorks
         # @param out_path [String] processor output file path.
         # @param options [Hash] creation options
         # @option options [String] `:output_size` as "w h" or "wxh"
-        # rubocop:disable Metrics/MethodLength
         def self.convert(in_path, out_path, options)
           size = options[:output_size].tr(' ', 'x')
           convert = MiniMagick::Tool::Convert.new(whiny: false)
@@ -30,7 +29,6 @@ module GeoWorks
           # suppress stderr b/c geotiffs return 'unknown field' warnings
           convert.call { |_stdout, _stderr| }
         end
-        # rubocop:enable Metrics/MethodLength
 
         # Trims extra whitespace.
         # @param in_path [String] file input path

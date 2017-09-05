@@ -15,17 +15,25 @@ module GeoWorks
         # @param out_path [String] processor output file path
         # @param method_queue [Array] set of commands to run
         # @param options [Hash] creation options to pass
+        # rubocop:disable Metrics/MethodLength
         def self.run_commands(in_path, out_path, method_queue, options)
           next_step = method_queue.shift
-          if method_queue.empty?
-            method(next_step).call(in_path, out_path, options)
-          else
-            temp = temp_path(out_path)
-            method(next_step).call(in_path, temp, options)
-            run_commands(temp, out_path, method_queue, options)
-            FileUtils.rm_rf(temp)
+          temp = temp_path(out_path)
+          begin
+            if method_queue.empty?
+              method(next_step).call(in_path, out_path, options)
+            else
+              method(next_step).call(in_path, temp, options)
+              run_commands(temp, out_path, method_queue, options)
+              FileUtils.rm_rf(temp)
+            end
+          rescue => e
+            FileUtils.rm_rf(in_path) if Dir.exist?(in_path)
+            FileUtils.rm_rf(temp) if Dir.exist?(temp)
+            raise e
           end
         end
+        # rubocop:enable Metrics/MethodLength
 
         # Returns a path to an intermediate temp file or directory.
         # @param path [String] input file path to base temp path on

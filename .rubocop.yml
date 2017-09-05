@@ -46,6 +46,7 @@ Metrics/AbcSize:
     - 'lib/geo_works/fgdc_metadata_extractor.rb'
 
 Metrics/MethodLength:
+  Max: 14
   Exclude:
     - 'Rakefile'
     - 'app/models/concerns/geo_works/extractors/iso19139_helper.rb'
