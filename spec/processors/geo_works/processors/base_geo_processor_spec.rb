@@ -36,6 +36,18 @@ describe GeoWorks::Processors::BaseGeoProcessor do
       expect(FileUtils).to receive(:rm_rf).twice
       subject.class.run_commands(file_name, output_file, method_queue, options)
     end
+
+    context 'when the processor raises an error' do
+      before do
+        allow(method_queue).to receive(:empty?).and_raise('error')
+        allow(Dir).to receive(:exist?).and_return(true)
+      end
+
+      it 'cleans the derivative intermediates' do
+        expect(FileUtils).to receive(:rm_rf).twice
+        expect { subject.class.run_commands(file_name, output_file, method_queue, options) }.to raise_error
+      end
+    end
   end
 
   describe '#temp_path' do
