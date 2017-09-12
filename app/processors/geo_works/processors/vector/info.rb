@@ -64,7 +64,9 @@ module GeoWorks
           # @return [String] vector geom
           def vector_geom
             match = /(?<=Geometry:\s).*?(?=\n)/.match(doc)
-            match ? match[0] : ''
+            geom = match ? match[0] : ''
+            # Transform OGR-style 'Line String' into GeoJSON 'Line'
+            geom == 'Line String' ? 'Line' : geom
           end
 
           # Given an output string from the ogrinfo command, returns

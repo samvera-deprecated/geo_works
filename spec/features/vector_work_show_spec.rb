@@ -9,10 +9,11 @@ describe "display a vector work as its owner", type: :feature do
   let(:attributes) { { title: title, coverage: coverage, spatial: spatial, temporal: temporal, user: user } }
   let(:fgdc_file) { test_data_fixture_path('zipcodes_fgdc.xml') }
   let(:vector_file) { test_data_fixture_path('files/tufts-cambridgegrid100-04.zip') }
+  let(:generator) { instance_double(GeoWorks::EventsGenerator).as_null_object }
 
   before do
-    allow(GeoblacklightJob).to receive(:perform_later)
-    allow(CharacterizeJob).to receive(:perform_later)
+    allow(GeoWorks::EventsGenerator).to receive(:new).and_return(generator)
+    allow(Hydra::Works::CharacterizationService).to receive(:run)
     create(:sipity_entity, proxy_for_global_id: work.to_global_id.to_s)
   end
 
@@ -33,29 +34,40 @@ describe "display a vector work as its owner", type: :feature do
       expect(page).to have_css("input#work_parent_members_ids")
     end
 
-    it "allows the user to attach files and extract attributes from metadata file" do
-      click_button 'Attach File'
-      click_link 'Attach Vector'
-      fill_in 'file_set[title][]', with: 'Vector File'
-      select 'ESRI Shapefile', from: 'file_set_geo_mime_type'
-      attach_file 'file_set[files][]', vector_file
-      click_button 'Attach to Vector Work'
-      expect(page).to have_text 'Vector File'
-      expect(page).to have_selector(:link_or_button, 'Download')
+    context 'when attaching files' do
+      after do
+        # Clean up derivatives
+        work_presenter = GeoWorks::VectorWorkShowPresenter.new(work, nil)
+        file_set = work_presenter.geo_file_set_presenters.first
+        dir = File.join(Hyrax.config.derivatives_path, file_set.id[0..1])
+        FileUtils.rm_r(dir) if File.directory?(dir)
+      end
 
-      click_button 'Attach File'
-      click_link 'Attach Metadata'
-      fill_in 'file_set[title][]', with: 'Metadata File'
-      select 'FGDC', from: 'file_set_geo_mime_type'
-      attach_file 'file_set[files][]', fgdc_file
-      click_button 'Attach to Vector Work'
-      expect(page).to have_text 'Metadata File'
+      it "allows the user to attach files and extract attributes from metadata file" do
+        click_button 'Attach File'
+        click_link 'Attach Vector'
+        fill_in 'file_set[title][]', with: 'Vector File'
+        select 'ESRI Shapefile', from: 'file_set_geo_mime_type'
+        attach_file 'file_set[files][]', vector_file
+        click_button 'Attach to Vector Work'
+        expect(page).to have_text 'Vector File'
+        expect(page).to have_selector(:link_or_button, 'Download')
+        expect(page).to have_text 'Polygon'
 
-      click_link 'Edit Work'
-      select 'zipcodes_fgdc.xml', from: 'vector_work[should_populate_metadata]'
-      click_button 'Save'
-      click_link "No. I'll update it manually."
-      expect(page).to have_text 'Louisiana ZIP Code Areas 2002'
+        click_button 'Attach File'
+        click_link 'Attach Metadata'
+        fill_in 'file_set[title][]', with: 'Metadata File'
+        select 'FGDC', from: 'file_set_geo_mime_type'
+        attach_file 'file_set[files][]', fgdc_file
+        click_button 'Attach to Vector Work'
+        expect(page).to have_text 'Metadata File'
+
+        click_link 'Edit Work'
+        select 'zipcodes_fgdc.xml', from: 'vector_work[should_populate_metadata]'
+        click_button 'Save'
+        click_link "No. I'll update it manually."
+        expect(page).to have_text 'Louisiana ZIP Code Areas 2002'
+      end
     end
   end
 end
