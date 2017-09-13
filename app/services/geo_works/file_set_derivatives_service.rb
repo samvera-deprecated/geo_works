@@ -17,6 +17,7 @@ module GeoWorks
         create_raster_derivatives(filename)
       when *GeoWorks::VectorFormatService.select_options.map(&:last)
         create_vector_derivatives(filename)
+        GeoWorks::VectorGeometryService.new(file_set, derivative_url('display_vector')).call
       end
 
       # Once all the derivatives are created, send a created message

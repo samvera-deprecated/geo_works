@@ -14,7 +14,7 @@ describe GeoWorks::Discovery::DocumentBuilder do
   let(:metadata_file) { FileSet.new(id: 'metadatafile', geo_mime_type: metadata__mime_type) }
   let(:metadata_presenter) { Hyrax::FileSetPresenter.new(SolrDocument.new(metadata_file.to_solr), nil) }
   let(:geo_file_mime_type) { 'application/zip; ogr-format="ESRI Shapefile"' }
-  let(:geo_file) { FileSet.new(id: 'geofile', geo_mime_type: geo_file_mime_type) }
+  let(:geo_file) { FileSet.new(id: 'geofile', geo_mime_type: geo_file_mime_type, geometry_type: 'Line') }
   let(:geo_file_presenter) { Hyrax::FileSetPresenter.new(SolrDocument.new(geo_file.to_solr), nil) }
   let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032) }
   let(:issued) { '01/02/2013' }
@@ -83,7 +83,7 @@ describe GeoWorks::Discovery::DocumentBuilder do
       end
 
       it 'has layer info fields' do
-        expect(document['layer_geom_type_s']).to eq('Mixed')
+        expect(document['layer_geom_type_s']).to eq('Line')
         expect(document['dc_format_s']).to eq('Shapefile')
       end
 
