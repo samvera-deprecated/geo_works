@@ -1,4 +1,4 @@
-gem 'hyrax', '1.0.1'
+gem 'hyrax', '1.0.5'
 gem 'geo_works'
 
 run 'bundle install'
