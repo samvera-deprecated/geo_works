@@ -58,7 +58,7 @@ Linux:
 Create and run a new GeoWorks application from a template:
 
 ```
-$ rails new app-name -m https://raw.githubusercontent.com/projecthydra-labs/geo_works/master/template.rb
+$ rails new app-name -m https://raw.githubusercontent.com/samvera-labs/geo_works/master/template.rb
 $ cd app-name
 $ rake hydra:server
 ```
