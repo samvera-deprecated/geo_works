@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :vector_work, aliases: [:private_vector_work], class: VectorWork do
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
 
       visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
     end
@@ -18,20 +18,20 @@ FactoryGirl.define do
 
     factory :vector_work_with_one_file do
       before(:create) do |vector_work, evaluator|
-        vector_work.ordered_members << FactoryGirl.create(:vector_file, user: evaluator.user, title: ['A shapefile'])
+        vector_work.ordered_members << FactoryBot.create(:vector_file, user: evaluator.user, title: ['A shapefile'])
       end
     end
 
     factory :vector_work_with_files do
       before(:create) do |vector_work, evaluator|
-        2.times { vector_work.ordered_members << FactoryGirl.create(:vector_file, user: evaluator.user) }
+        2.times { vector_work.ordered_members << FactoryBot.create(:vector_file, user: evaluator.user) }
       end
     end
 
     factory :vector_work_with_raster_works do
       before(:create) do |vector_work, evaluator|
         2.times do
-          raster = FactoryGirl.create(:raster, user: evaluator.user)
+          raster = FactoryBot.create(:raster, user: evaluator.user)
           raster.ordered_members << vector_work
         end
       end
@@ -39,20 +39,20 @@ FactoryGirl.define do
 
     factory :vector_work_with_one_metadata_file do
       after(:create) do |vector_work, evaluator|
-        1.times { vector_work.ordered_members << FactoryGirl.create(:external_metadata_file, user: evaluator.user) }
+        1.times { vector_work.ordered_members << FactoryBot.create(:external_metadata_file, user: evaluator.user) }
       end
     end
 
     factory :vector_work_with_metadata_files do
       after(:create) do |vector_work, evaluator|
-        2.times { vector_work.ordered_members << FactoryGirl.create(:external_metadata_file, user: evaluator.user) }
+        2.times { vector_work.ordered_members << FactoryBot.create(:external_metadata_file, user: evaluator.user) }
       end
     end
 
     factory :vector_work_with_vector_and_metadata_file do
       before(:create) do |vector_work, evaluator|
-        vector_work.ordered_members << FactoryGirl.create(:vector_file, user: evaluator.user)
-        vector_work.ordered_members << FactoryGirl.create(:external_metadata_file, user: evaluator.user)
+        vector_work.ordered_members << FactoryBot.create(:vector_file, user: evaluator.user)
+        vector_work.ordered_members << FactoryBot.create(:external_metadata_file, user: evaluator.user)
         vector_work.save
       end
     end
@@ -68,7 +68,7 @@ FactoryGirl.define do
 
       factory :embargoed_vector_work_with_files do
         after(:build) { |vector_work, evaluator| vector_work.apply_embargo(evaluator.embargo_date, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC) }
-        after(:create) { |vector_work, evaluator| 2.times { vector_work.ordered_members << FactoryGirl.create(:vector_file, user: evaluator.user) } }
+        after(:create) { |vector_work, evaluator| 2.times { vector_work.ordered_members << FactoryBot.create(:vector_file, user: evaluator.user) } }
       end
 
       factory :leased_vector_work do
@@ -77,7 +77,7 @@ FactoryGirl.define do
 
       factory :leased_vector_work_with_files do
         after(:build) { |vector_work, evaluator| vector_work.apply_lease(evaluator.embargo_date, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE) }
-        after(:create) { |vector_work, evaluator| 2.times { vector_work.ordered_members << FactoryGirl.create(:vector_file, user: evaluator.user) } }
+        after(:create) { |vector_work, evaluator| 2.times { vector_work.ordered_members << FactoryBot.create(:vector_file, user: evaluator.user) } }
       end
     end
   end

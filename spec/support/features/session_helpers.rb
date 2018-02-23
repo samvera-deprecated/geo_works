@@ -28,7 +28,7 @@ module Features
       user = if who.instance_of?(User)
                who
              else
-               FactoryGirl.build(:user).tap(&:save!)
+               FactoryBot.build(:user).tap(&:save!)
              end
       visit new_user_session_path
       fill_in 'Email', with: user.email

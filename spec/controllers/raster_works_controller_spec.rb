@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Hyrax::RasterWorksController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:raster_work) { FactoryGirl.create(:raster_work, user: user, title: ['Raster Work Title']) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:raster_work) { FactoryBot.create(:raster_work, user: user, title: ['Raster Work Title']) }
   let(:reloaded) { raster_work.reload }
   let!(:sipity_entity) do
     create(:sipity_entity, proxy_for_global_id: raster_work.to_global_id.to_s)
@@ -13,7 +13,7 @@ describe Hyrax::RasterWorksController, type: :controller do
       sign_in user
     end
     context "when there's a parent image work" do
-      let(:parent_image_work) { FactoryGirl.create(:image_work, user: user) }
+      let(:parent_image_work) { FactoryBot.create(:image_work, user: user) }
       let!(:parent_sipity_entity) do
         create(:sipity_entity, proxy_for_global_id: parent_image_work.to_global_id.to_s)
       end

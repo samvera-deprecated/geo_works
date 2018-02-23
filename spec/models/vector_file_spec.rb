@@ -14,7 +14,7 @@ describe FileSet do
   end
 
   describe 'vector work association' do
-    let(:work) { FactoryGirl.create(:vector_work_with_one_file) }
+    let(:work) { FactoryBot.create(:vector_work_with_one_file) }
     subject { work.file_sets.first.reload }
     it 'belongs to vector work' do
       expect(subject.vector_work).to match_array [work]
@@ -22,9 +22,9 @@ describe FileSet do
   end
 
   describe "to_solr" do
-    let(:solr_doc) { FactoryGirl.build(:vector_file,
-                                       date_uploaded: Time.zone.today,
-                                       cartographic_projection: 'urn:ogc:def:crs:EPSG::6326').to_solr
+    let(:solr_doc) { FactoryBot.build(:vector_file,
+                                      date_uploaded: Time.zone.today,
+                                      cartographic_projection: 'urn:ogc:def:crs:EPSG::6326').to_solr
     }
 
     it "indexes the coordinate reference system" do

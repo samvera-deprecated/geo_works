@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ImageWork do
-  let(:user) { FactoryGirl.find_or_create(:jill) }
+  let(:user) { FactoryBot.find_or_create(:jill) }
   let(:image_file1) { FileSet.new(geo_mime_type: 'image/jpeg') }
   let(:ext_metadata_file1) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
   let(:ext_metadata_file2) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
@@ -44,7 +44,7 @@ describe ImageWork do
   end
 
   context 'georeferenced to a raster' do
-    subject { FactoryGirl.create(:image_work_with_raster_works, title: ['Test title 4'], coverage: coverage.to_s) }
+    subject { FactoryBot.create(:image_work_with_raster_works, title: ['Test title 4'], coverage: coverage.to_s) }
 
     it 'aggregates by raster resources' do
       expect(subject.raster_works.size).to eq 1
@@ -53,7 +53,7 @@ describe ImageWork do
   end
 
   describe 'populate_metadata' do
-    subject { FactoryGirl.create(:image_work_with_one_metadata_file) }
+    subject { FactoryBot.create(:image_work_with_one_metadata_file) }
     let(:doc) { Nokogiri::XML(read_test_data_fixture('McKay/S_566_1914_clip_iso.xml')) }
 
     it 'has an extraction method' do

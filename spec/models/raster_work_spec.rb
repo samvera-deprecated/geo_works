@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RasterWork do
-  let(:user) { FactoryGirl.find_or_create(:jill) }
+  let(:user) { FactoryBot.find_or_create(:jill) }
   let(:raster_file1) { FileSet.new(geo_mime_type: 'image/tiff; gdal-format=GTiff') }
   let(:raster_file2) { FileSet.new(geo_mime_type: 'image/tiff; gdal-format=GTiff') }
   let(:ext_metadata_file1) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
@@ -55,7 +55,7 @@ describe RasterWork do
   end
 
   context 'with raster files' do
-    subject { FactoryGirl.create(:raster_work_with_files, title: ['Test title 4'], coverage: coverage.to_s) }
+    subject { FactoryBot.create(:raster_work_with_files, title: ['Test title 4'], coverage: coverage.to_s) }
 
     it 'has two files' do
       expect(subject.raster_files.size).to eq 2
@@ -64,7 +64,7 @@ describe RasterWork do
   end
 
   context 'with vector feature extractions' do
-    subject { FactoryGirl.create(:raster_work_with_vector_work) }
+    subject { FactoryBot.create(:raster_work_with_vector_work) }
 
     it 'aggregates vector data set resources' do
       expect(subject.vector_works.size).to eq 1
@@ -73,7 +73,7 @@ describe RasterWork do
   end
 
   context 'with metadata files' do
-    subject { FactoryGirl.create(:raster_work_with_metadata_files) }
+    subject { FactoryBot.create(:raster_work_with_metadata_files) }
 
     it 'aggregates external metadata files' do
       expect(subject.metadata_files.size).to eq 2
@@ -82,8 +82,8 @@ describe RasterWork do
   end
 
   describe '#image_work' do
-    let(:raster_work) { FactoryGirl.create(:raster_work, title: ['Raster'], coverage: coverage.to_s) }
-    let(:image_work) { FactoryGirl.create(:image_work, title: ['Image'], coverage: coverage.to_s) }
+    let(:raster_work) { FactoryBot.create(:raster_work, title: ['Raster'], coverage: coverage.to_s) }
+    let(:image_work) { FactoryBot.create(:image_work, title: ['Image'], coverage: coverage.to_s) }
 
     before do
       image_work.ordered_members << raster_work
@@ -97,14 +97,14 @@ describe RasterWork do
   end
 
   describe "to_solr" do
-    subject { FactoryGirl.build(:raster_work, date_uploaded: Time.zone.today, coverage: coverage.to_s).to_solr }
+    subject { FactoryBot.build(:raster_work, date_uploaded: Time.zone.today, coverage: coverage.to_s).to_solr }
     it "indexes ordered_by_ssim field" do
       expect(subject.keys).to include 'ordered_by_ssim'
     end
   end
 
   describe 'populate_metadata' do
-    subject { FactoryGirl.create(:raster_work_with_one_metadata_file) }
+    subject { FactoryBot.create(:raster_work_with_one_metadata_file) }
     let(:doc) { Nokogiri::XML(read_test_data_fixture('McKay/S_566_1914_clip_iso.xml')) }
 
     it 'has an extraction method' do

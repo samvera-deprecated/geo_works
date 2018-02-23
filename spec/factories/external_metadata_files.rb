@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :external_metadata_file, class: FileSet do
     initialize_with { new(geo_mime_type: 'application/xml; schema=iso19139') }
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
       content nil
     end
 

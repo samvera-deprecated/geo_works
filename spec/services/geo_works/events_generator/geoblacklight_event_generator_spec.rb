@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe GeoWorks::EventsGenerator::GeoblacklightEventGenerator do
   subject { described_class.new }
-  let(:geo_concern) { FactoryGirl.build(:public_vector_work, attributes) }
+  let(:geo_concern) { FactoryBot.build(:public_vector_work, attributes) }
   let(:record) { GeoWorks::VectorWorkShowPresenter.new(SolrDocument.new(geo_concern.to_solr), nil) }
   let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
   let(:coverage) { GeoWorks::Coverage.new(43, -69, 42, -71) }

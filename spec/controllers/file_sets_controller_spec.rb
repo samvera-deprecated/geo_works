@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Hyrax::FileSetsController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:parent) { FactoryGirl.build(:public_vector_work) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:parent) { FactoryBot.build(:public_vector_work) }
 
   subject { described_class.new }
 

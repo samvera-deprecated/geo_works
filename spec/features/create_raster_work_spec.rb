@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.feature 'RasterWorkController', type: :feature do
-  let(:user) { FactoryGirl.create(:admin) }
+  let(:user) { FactoryBot.create(:admin) }
 
   before do
     allow(GeoblacklightJob).to receive(:perform_later)

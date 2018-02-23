@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :raster_file, class: FileSet do
     initialize_with { new(geo_mime_type: 'image/tiff; gdal-format=GTiff') }
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
       content nil
 
       cartographic_projection 'urn:ogc:def:crs:EPSG::6326'
@@ -27,7 +27,7 @@ FactoryGirl.define do
           Hydra::Works::UploadFileToFileSet.call(file, evaluator.content)
         end
 
-        raster = FactoryGirl.create(:raster, user: evaluator.user)
+        raster = FactoryBot.create(:raster, user: evaluator.user)
         raster.raster_files << file
       end
     end

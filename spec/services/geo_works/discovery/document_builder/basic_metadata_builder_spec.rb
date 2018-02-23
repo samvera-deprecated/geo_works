@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GeoWorks::Discovery::DocumentBuilder::BasicMetadataBuilder do
   subject { described_class.new(geo_concern) }
 
-  let(:geo_concern) { FactoryGirl.build(:public_vector_work, id: 'geo-work-1') }
+  let(:geo_concern) { FactoryBot.build(:public_vector_work, id: 'geo-work-1') }
   let(:id_string) { 'ark:/99999/fk4' }
 
   describe '#identifier' do

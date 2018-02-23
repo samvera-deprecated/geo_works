@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Hyrax::VectorWorksController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:vector_work) { FactoryGirl.create(:vector_work, user: user, title: ['Vector Work Title']) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:vector_work) { FactoryBot.create(:vector_work, user: user, title: ['Vector Work Title']) }
   let(:reloaded) { vector_work.reload }
   let!(:sipity_entity) do
     create(:sipity_entity, proxy_for_global_id: vector_work.to_global_id.to_s)
@@ -13,7 +13,7 @@ describe Hyrax::VectorWorksController, type: :controller do
       sign_in user
     end
     context "when there's a parent raster work" do
-      let(:parent_raster_work) { FactoryGirl.create(:raster_work, user: user) }
+      let(:parent_raster_work) { FactoryBot.create(:raster_work, user: user) }
       let!(:parent_sipity_entity) do
         create(:sipity_entity, proxy_for_global_id: parent_raster_work.to_global_id.to_s)
       end

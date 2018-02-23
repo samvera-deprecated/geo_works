@@ -23,7 +23,7 @@ RSpec.describe GeoWorks::ImageWorkShowPresenter do
   end
 
   describe "#work_presenters" do
-    let(:obj) { FactoryGirl.create(:image_work_with_raster_works) }
+    let(:obj) { FactoryBot.create(:image_work_with_raster_works) }
     let(:attributes) { obj.to_solr }
 
     it "returns raster work presenters" do
@@ -33,7 +33,7 @@ RSpec.describe GeoWorks::ImageWorkShowPresenter do
   end
 
   describe "file presenters" do
-    let(:obj) { FactoryGirl.create(:image_work_with_files_and_metadata_files) }
+    let(:obj) { FactoryBot.create(:image_work_with_files_and_metadata_files) }
     let(:attributes) { obj.to_solr }
 
     describe "#geo_file_set_presenters" do

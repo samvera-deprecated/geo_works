@@ -5,7 +5,7 @@ require 'spec_helper'
 describe GeoWorks::Discovery::DocumentBuilder do
   subject { described_class.new(geo_concern_presenter, document_class) }
 
-  let(:geo_concern) { FactoryGirl.build(:public_vector_work, attributes) }
+  let(:geo_concern) { FactoryBot.build(:public_vector_work, attributes) }
   let(:geo_concern_presenter) { GeoWorks::VectorWorkShowPresenter.new(SolrDocument.new(geo_concern.to_solr), nil) }
   let(:document_class) { GeoWorks::Discovery::GeoblacklightDocument.new }
   let(:document) { JSON.parse(subject.to_json(nil)) }

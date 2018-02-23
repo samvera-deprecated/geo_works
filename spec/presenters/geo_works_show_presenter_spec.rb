@@ -22,7 +22,7 @@ RSpec.describe ::GeoWorks::GeoWorksShowPresenter do
   end
 
   describe "#attribute_to_html" do
-    let(:attributes) { FactoryGirl.create(:raster_work).to_solr }
+    let(:attributes) { FactoryBot.create(:raster_work).to_solr }
     let(:attribute_renderer) { double('attribute_renderer') }
     let(:coverage_renderer) { double('coverage_renderer') }
 

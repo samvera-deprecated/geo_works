@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe VectorWork do
-  let(:user) { FactoryGirl.find_or_create(:jill) }
+  let(:user) { FactoryBot.find_or_create(:jill) }
   let(:vector_file1) { FileSet.new(geo_mime_type: 'application/zip; ogr-format="ESRI Shapefile"') }
   let(:vector_file2) { FileSet.new(geo_mime_type: 'application/zip; ogr-format="ESRI Shapefile"') }
   let(:ext_metadata_file1) { FileSet.new(geo_mime_type: 'application/xml; schema=iso19139') }
@@ -51,7 +51,7 @@ describe VectorWork do
   end
 
   context 'with files' do
-    subject { FactoryGirl.create(:vector_work_with_files, title: ['Test title 4'], coverage: coverage.to_s) }
+    subject { FactoryBot.create(:vector_work_with_files, title: ['Test title 4'], coverage: coverage.to_s) }
 
     it 'has two files' do
       expect(subject.vector_files.size).to eq 2
@@ -60,7 +60,7 @@ describe VectorWork do
   end
 
   context 'with metadata files' do
-    subject { FactoryGirl.create(:vector_work_with_metadata_files) }
+    subject { FactoryBot.create(:vector_work_with_metadata_files) }
 
     it 'aggregates external metadata files' do
       expect(subject.metadata_files.size).to eq 2
@@ -69,8 +69,8 @@ describe VectorWork do
   end
 
   describe '#raster_work' do
-    let(:vector_work) { FactoryGirl.create(:vector_work, title: ['Vector'], coverage: coverage.to_s) }
-    let(:raster_work) { FactoryGirl.create(:raster_work, title: ['Raster'], coverage: coverage.to_s) }
+    let(:vector_work) { FactoryBot.create(:vector_work, title: ['Vector'], coverage: coverage.to_s) }
+    let(:raster_work) { FactoryBot.create(:raster_work, title: ['Raster'], coverage: coverage.to_s) }
 
     before do
       raster_work.ordered_members << vector_work
@@ -84,14 +84,14 @@ describe VectorWork do
   end
 
   describe "to_solr" do
-    subject { FactoryGirl.build(:vector_work, date_uploaded: Time.zone.today, coverage: coverage.to_s).to_solr }
+    subject { FactoryBot.build(:vector_work, date_uploaded: Time.zone.today, coverage: coverage.to_s).to_solr }
     it "indexes ordered_by_ssim field" do
       expect(subject.keys).to include 'ordered_by_ssim'
     end
   end
 
   describe 'populate_metadata' do
-    subject { FactoryGirl.create(:vector_work_with_one_metadata_file) }
+    subject { FactoryBot.create(:vector_work_with_one_metadata_file) }
     let(:doc) { Nokogiri::XML(read_test_data_fixture('McKay/S_566_1914_clip_iso.xml')) }
 
     it 'has an extraction method' do

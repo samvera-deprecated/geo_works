@@ -22,7 +22,7 @@ RSpec.describe ::GeoWorks::VectorWorkShowPresenter do
   end
 
   describe "file presenters" do
-    let(:obj) { FactoryGirl.create(:vector_work_with_vector_and_metadata_file) }
+    let(:obj) { FactoryBot.create(:vector_work_with_vector_and_metadata_file) }
     let(:attributes) { obj.to_solr }
     subject { described_class.new(solr_document, ability) }
 

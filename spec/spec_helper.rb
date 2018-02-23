@@ -53,7 +53,7 @@ RSpec.configure do |config|
   end
   config.fixture_path = File.expand_path("../fixtures", __FILE__)
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   if defined? Devise::Test::ControllerHelpers
     config.include Devise::Test::ControllerHelpers, type: :controller
     config.include Devise::Test::ControllerHelpers, type: :view

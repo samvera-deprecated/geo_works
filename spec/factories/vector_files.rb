@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :vector_file, class: FileSet do
     initialize_with { new(geo_mime_type: 'application/zip; ogr-format="ESRI Shapefile"') }
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
       content nil
     end
 
@@ -24,7 +24,7 @@ FactoryGirl.define do
         if evaluator.content
           Hydra::Works::UploadFileToFileSet.call(file, evaluator.content)
         end
-        FactoryGirl.create(:vector, user: evaluator.user).vector_files << file
+        FactoryBot.create(:vector, user: evaluator.user).vector_files << file
       end
     end
   end

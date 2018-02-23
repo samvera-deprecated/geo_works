@@ -22,7 +22,7 @@ RSpec.describe GeoWorks::RasterWorkShowPresenter do
   end
 
   describe "#work_presenters" do
-    let(:obj) { FactoryGirl.create(:raster_work_with_vector_work) }
+    let(:obj) { FactoryBot.create(:raster_work_with_vector_work) }
     let(:attributes) { obj.to_solr }
     subject { described_class.new(solr_document, ability) }
 
@@ -33,9 +33,9 @@ RSpec.describe GeoWorks::RasterWorkShowPresenter do
   end
 
   describe "#parent_work_presenters" do
-    let(:obj) { FactoryGirl.create(:raster_work) }
-    let(:parent_work) { FactoryGirl.create(:image_work) }
-    let(:collection) { FactoryGirl.create(:collection) }
+    let(:obj) { FactoryBot.create(:raster_work) }
+    let(:parent_work) { FactoryBot.create(:image_work) }
+    let(:collection) { FactoryBot.create(:collection) }
     let(:attributes) { obj.to_solr }
 
     subject { described_class.new(solr_document, ability) }
@@ -55,7 +55,7 @@ RSpec.describe GeoWorks::RasterWorkShowPresenter do
   end
 
   describe "file presenters" do
-    let(:obj) { FactoryGirl.create(:raster_work_with_files_and_metadata_files) }
+    let(:obj) { FactoryBot.create(:raster_work_with_files_and_metadata_files) }
     let(:attributes) { obj.to_solr }
     subject { described_class.new(solr_document, ability) }
 

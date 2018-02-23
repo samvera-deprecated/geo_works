@@ -14,9 +14,9 @@ describe FileSet do
   end
 
   describe "to_solr" do
-    let(:solr_doc) { FactoryGirl.build(:external_metadata_file,
-                                       date_uploaded: Time.zone.today,
-                                       geo_mime_type: 'application/xml; schema=iso19139').to_solr
+    let(:solr_doc) { FactoryBot.build(:external_metadata_file,
+                                      date_uploaded: Time.zone.today,
+                                      geo_mime_type: 'application/xml; schema=iso19139').to_solr
     }
 
     it "does not index bbox field" do
