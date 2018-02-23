@@ -36,9 +36,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'fcrepo_wrapper', '~> 0.6', '>= 0.6.0'
   spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'database_cleaner', '< 1.1.0'
-  spec.add_development_dependency 'rubocop', '~> 0.39'
+  spec.add_development_dependency 'rubocop', '~> 0.39.0'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.4.1'
-  spec.add_development_dependency 'factory_girl'
+  spec.add_development_dependency 'factory_bot'
   spec.add_development_dependency 'capybara', '~> 2.7'
   spec.add_development_dependency "poltergeist", "~> 1.5"
 end
