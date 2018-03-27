@@ -1,8 +1,7 @@
 # GeoWorks
 
-Code: [![Build Status](https://img.shields.io/travis/geoconcerns/geo_works/master.svg)](https://travis-ci.org/geoconcerns/geo_works)
-[![Coverage Status](https://img.shields.io/coveralls/projecthydra-labs/geo_works/master.svg)](https://coveralls.io/github/geoconcerns/geo_works?branch=master)
-[![Code Climate](https://codeclimate.com/github/geoconcerns/geo_works/badges/gpa.svg)](https://codeclimate.com/github/geoconcerns/geo_works)
+Code: [![Build Status](https://img.shields.io/travis/samvera-labs/geo_works/master.svg)](https://travis-ci.org/samvera-labs/geo_works)
+[![Coverage Status](https://img.shields.io/coveralls/samvera-labs/geo_works/master.svg)](https://coveralls.io/github/samvera-labs/geo_works?branch=master)
 
 Docs: [![Documentation Status](https://inch-ci.org/github/geoconcerns/geo_works.svg?branch=master)](https://inch-ci.org/github/geoconcerns/geo_works)
 [![API Docs](http://img.shields.io/badge/API-docs-blue.svg)](http://www.rubydoc.info/github/geoconcerns/geo_works)
