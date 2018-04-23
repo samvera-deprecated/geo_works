@@ -41,7 +41,7 @@ module GeoWorks
           def add_shapefile_layer(in_path, map)
             Dir.glob("#{in_path}/*.shp").each do |shp|
               map.layer shp do |l|
-                l.query "select * from '#{File.basename shp, '.shp'}'" do |q|
+                l.query %(select * from "#{File.basename shp, '.shp'}") do |q|
                   q.styles SimplerTiles.config.to_h
                 end
               end
