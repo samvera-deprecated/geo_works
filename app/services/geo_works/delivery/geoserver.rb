@@ -8,6 +8,9 @@ module GeoWorks
     class Geoserver
       attr_reader :config, :workspace_name, :file_set, :file_path
 
+      class_attribute :coverage_class
+      self.coverage_class = RGeoServer::Coverage
+
       def initialize(file_set, file_path)
         @file_set = file_set
         @file_path = file_path
@@ -88,9 +91,9 @@ module GeoWorks
         end
 
         def persist_coverage
-          coverage = RGeoServer::Coverage.new catalog, workspace: workspace,
-                                                       coverage_store: coveragestore,
-                                                       name: coveragestore.name
+          coverage = coverage_class.new catalog, workspace: workspace,
+                                                 coverage_store: coveragestore,
+                                                 name: coveragestore.name
           coverage.title = coveragestore.name
           coverage.metadata_links = []
           coverage.save
