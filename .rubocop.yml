@@ -4,6 +4,7 @@ Rails:
   Enabled: true
   
 AllCops:
+  TargetRubyVersion: 2.1
   UseCache: false
   DisplayCopNames: true
   Include:
@@ -16,6 +17,7 @@ AllCops:
     - 'bin/**/*'
     - 'spec/internal/**/*'
     - 'misc/**/*'
+    - 'tmp/**/*'
 
 Lint/UselessAssignment:
   Exclude:
@@ -44,6 +46,7 @@ Metrics/AbcSize:
   Exclude:
     - 'app/models/concerns/geo_works/extractors/iso19139_helper.rb'
     - 'lib/geo_works/fgdc_metadata_extractor.rb'
+    - 'app/controllers/concerns/geo_works/file_sets_controller_behavior.rb'
 
 Metrics/MethodLength:
   Max: 14

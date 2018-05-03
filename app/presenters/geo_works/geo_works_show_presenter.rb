@@ -26,9 +26,9 @@ module GeoWorks
     end
 
     def member_of_presenters
-      Hyrax::PresenterFactory.build_presenters(member_of_ids,
-                                               collection_presenter_class,
-                                               *presenter_factory_arguments)
+      Hyrax::PresenterFactory.build_for(ids: member_of_ids,
+                                        presenter_class: collection_presenter_class,
+                                        presenter_args: presenter_factory_arguments)
     end
 
     def member_of_ids

@@ -44,16 +44,9 @@ module GeoWorks
       install_specs
     end
 
-    def install_file_sets_controller
-      file_path = 'app/controllers/hyrax/file_sets_controller.rb'
-      if File.exist?(file_path)
-        inject_into_file file_path, after: /include Hyrax::FileSetsControllerBehavior.*$/ do
-          "\n    include GeoConcerns::FileSetsControllerBehavior\n" \
-            "    include GeoConcerns::EventsBehavior\n"
-        end
-      else
-        copy_file 'controllers/hyrax/file_sets_controller.rb', file_path
-      end
+    def configure_file_sets_controller
+      file_path = 'config/initializers/geo_works.rb'
+      copy_file file_path, file_path
     end
 
     def copy_hyrax_derivate_path_monkey_patch
@@ -71,6 +64,12 @@ module GeoWorks
     def inject_into_file_set
       file_path = 'app/models/file_set.rb'
       if File.exist?(file_path)
+        inject_into_file file_path, before: /include ::Hyrax::FileSetBehavior.*$/ do
+          "\n  include ::GeoWorks::FileSetMetadata" \
+          "\n  include ::GeoWorks::RasterFileBehavior" \
+          "\n  include ::GeoWorks::VectorFileBehavior\n\n"
+        end
+
         inject_into_file file_path, after: /include ::Hyrax::FileSetBehavior.*$/ do
           "\n  # GeoWorks behavior to FileSet.\n" \
             "  include ::GeoWorks::GeoFileSetBehavior\n"
@@ -137,9 +136,11 @@ module GeoWorks
         model_path = "app/models/#{name}.rb"
         actor_path = "app/actors/hyrax/actors/#{name}_actor.rb"
         controller_path = "app/controllers/hyrax/#{name.pluralize}_controller.rb"
+        indexer_path = "app/indexers/#{name}_indexer.rb"
         copy_file "models/#{name}.rb", model_path
         copy_file "actors/hyrax/actors/#{name}_actor.rb", actor_path
         copy_file "controllers/hyrax/#{name.pluralize}_controller.rb", controller_path
+        copy_file "indexers/#{name}_indexer.rb", indexer_path
       end
 
       def install_specs

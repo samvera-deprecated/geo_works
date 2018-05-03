@@ -65,7 +65,6 @@ describe "display a vector work as its owner", type: :feature do
         click_link 'Edit Work'
         select 'zipcodes_fgdc.xml', from: 'vector_work[should_populate_metadata]'
         click_button 'Save'
-        click_link "No. I'll update it manually."
         expect(page).to have_text 'Louisiana ZIP Code Areas 2002'
       end
     end

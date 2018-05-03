@@ -24,7 +24,7 @@ RSpec.feature 'RasterWorkController', type: :feature do
       fill_in 'raster_work_temporal', with: '1998-2006'
       fill_in 'raster_work_issued', with: '2001-01-01T00:00:00Z'
       choose 'raster_work_visibility_open'
-      select 'Attribution 3.0 United States', from: 'raster_work[rights][]'
+      select 'Creative Commons BY Attribution 4.0 International', from: 'raster_work[license][]'
       choose 'raster_work_visibility_open'
       check 'agreement'
       click_button 'Save'

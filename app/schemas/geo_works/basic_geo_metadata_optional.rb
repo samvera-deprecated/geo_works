@@ -1,9 +1,9 @@
 module GeoWorks
   class BasicGeoMetadataOptional < ActiveTriples::Schema
     #
-    # The following properties are inherited from Curation Concerns' metadata
+    # The following properties are inherited from Hyrax's metadata
+    # @see https://github.com/samvera/hyrax/blob/v2.0.2/app/models/concerns/hyrax/basic_metadata.rb
     #
-    # @see https://github.com/projecthydra/hyrax/blob/v1.6.0/app/models/concerns/hyrax/basic_metadata.rb
     # Optional:
     #   :contributor
     #   :creator
@@ -11,11 +11,10 @@ module GeoWorks
     #   :description
     #   :identifier
     #   :language
-    #   :part_of
+    #   :license
     #   :publisher
     #   :resource_type (DC.type)
-    #   :rights (license)
-    #   :rights
+    #   :rights_statement
     #   :source
     #   :subject
     #   :tag (DC11.relation)

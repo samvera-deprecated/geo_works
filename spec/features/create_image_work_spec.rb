@@ -24,7 +24,7 @@ RSpec.feature 'ImageWorkController', type: :feature do
       fill_in 'image_work_temporal', with: '1998-2006'
       fill_in 'image_work_issued', with: '2001-01-01T00:00:00Z'
       choose 'image_work_visibility_open'
-      select 'Attribution 3.0 United States', from: 'image_work[rights][]'
+      select 'Creative Commons BY Attribution 4.0 International', from: 'image_work[license][]'
       check 'agreement'
       click_button 'Save'
 

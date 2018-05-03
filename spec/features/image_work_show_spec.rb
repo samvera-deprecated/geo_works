@@ -56,7 +56,7 @@ describe "display a image work as its owner", type: :feature do
       expect(page).not_to have_selector(:css, 'a[href="#files"]')
       fill_in 'raster_work_title', with: 'Raster Title'
       choose 'raster_work_visibility_authenticated'
-      select 'Attribution 3.0 United States', from: 'raster_work[rights][]'
+      select 'Creative Commons BY Attribution 4.0 International', from: 'raster_work[license][]'
     end
   end
 end

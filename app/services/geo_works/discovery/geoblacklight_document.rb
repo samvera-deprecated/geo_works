@@ -81,6 +81,9 @@ module GeoWorks
 
         # Returns the geoblacklight rights field based on work visibility.
         # @return [String] geoblacklight access rights
+        #
+        # Note that this is different from how Hyrax uses ::RDF::Vocab::DC.rights.
+        # Hyrax::BasicMetadata defines the 'license' property to use DC.rights.
         def rights
           case access_rights
           when Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC

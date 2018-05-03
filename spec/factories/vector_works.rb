@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :vector_work, aliases: [:private_vector_work], class: VectorWork do
+    sequence(:title) { |n| ["Vector Work #{n}"] }
     transient do
       user { FactoryGirl.create(:user) }
 

@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :image_work, aliases: [:private_image_work], class: ImageWork do
+    sequence(:title) { |n| ["Image Work #{n}"] }
     transient do
       user { FactoryGirl.create(:user) }
 

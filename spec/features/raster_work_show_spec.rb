@@ -56,7 +56,7 @@ describe "display a raster work as its owner", type: :feature do
       expect(page).not_to have_selector(:css, 'a[href="#files"]')
       fill_in 'vector_work_title', with: 'Vector Title'
       choose 'vector_work_visibility_authenticated'
-      select 'Attribution 3.0 United States', from: 'vector_work[rights][]'
+      select 'Creative Commons BY Attribution 4.0 International', from: 'vector_work[license][]'
     end
   end
 end
